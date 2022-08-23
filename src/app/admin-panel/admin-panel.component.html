@@ -1,6 +1,7 @@
+<h2>Create User</h2>
 <form [formGroup]="userForm1" (ngSubmit)="onSubmit()">
     <label>
-      Username:
+      Email:
       <input type="text" formControlName="email">
     </label>
   <br>
@@ -9,8 +10,25 @@
       <input type="text" formControlName="password">
     </label>
   
-    <button type="submit">Submit</button>
+    <button type="submit">Submit
+    </button>
   
 
   </form>
 
+  <h2>Delete User By ID</h2>
+  <label>
+    ID:
+    <input type="number" #id>
+  </label>
+  
+  <button (click)="deleteUser(id.value); id.value=''">
+      Delete
+    
+    </button>
+      <ul class="users">
+        <li *ngFor="let user of users">
+          <span class="badge">{{user.userId}}</span> {{user.email}}
+          <button class="btn btn-xs btn-danger" (click)="deleteUser(user.userId)">Delete</button>
+        </li>
+      </ul>

@@ -24,7 +24,6 @@ export class AdminPanelComponent implements OnInit {
 
   ngOnInit(): void {
     this.getusers();
-
   }
 
   getusers(): void{
@@ -38,7 +37,6 @@ export class AdminPanelComponent implements OnInit {
     this.adminPanelService.createUser(this.userForm1.getRawValue()).subscribe(user =>{
       return this.users.push(user);
     })
-
   }
 
   deleteUser(userId: number) : void {

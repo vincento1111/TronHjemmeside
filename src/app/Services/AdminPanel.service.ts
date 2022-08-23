@@ -8,7 +8,7 @@ import { IUser } from '../Interfaces/IUser';
   providedIn: 'root'
 })
 export class AdminPanelService {
-  private url = 'http://localhost:7134/api/Users/';
+  private url = 'https://localhost:44344/api/users/';
 
   constructor(private http: HttpClient) { }
 
@@ -24,7 +24,6 @@ export class AdminPanelService {
     return this.http.get<IUser>(this.url + "login?userName=" + email + "&pW=" + password, httpOptions)
   }
   createUser(user: IUser): Observable<IUser> {
-    //console.warn(this.url + user.UserName);
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.post<IUser>(this.url,
       user, httpOptions);
