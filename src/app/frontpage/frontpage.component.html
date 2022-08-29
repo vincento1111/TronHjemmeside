@@ -1,17 +1,25 @@
 <h2>Login</h2>
 
-<div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+<form [formGroup]="loginForm" (ngSubmit)="Login()">
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-
-    <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
+    <label #email>
+      Username:
+      <input type="text" formControlName="email">
     </label>
-  </div>
+  <br>
+    <label #password>
+      Password:
+      
+      <input type="text" formControlName="password">
+    </label>
+  <br>
+    <button type="submit">Submit</button>
+  
+</form>
+
+<p>{{velkommen}}</p> 
+<p>{{email}}</p>
+
   <h2>Register</h2>
 <p>Please fill in this form to create an account.</p>
 <hr>
@@ -21,3 +29,4 @@
 
 <label for="psw"><b>Password</b></label>
 <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+

@@ -17,11 +17,11 @@ export class AdminPanelService {
   }
   
   //GET
-  Login(email: IUser, password: IUser): Observable<IUser> {
+  Login(email: string, password: string): Observable<IUser> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    //console.warn("METODEN BLEV KALDT!");
-    //console.warn(this.url + "login?userName=" + userName + "&pW=" + pW );
-    return this.http.get<IUser>(this.url + "login?userName=" + email + "&pW=" + password, httpOptions)
+    console.warn("METODEN BLEV KALDT!");
+    console.warn(this.url + "user?email=" + email + "&password=" + password );
+    return this.http.get<IUser>(this.url + "login?email=" + email + "&password=" + password, httpOptions)
   }
   createUser(user: IUser): Observable<IUser> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
