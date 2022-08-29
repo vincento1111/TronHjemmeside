@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdminPanelService } from '../Services/AdminPanel.service';
 import { IUser } from '../Interfaces/IUser';
 import { FormBuilder,FormGroup, FormControl } from '@angular/forms';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-frontpage',
@@ -13,8 +13,8 @@ export class FrontpageComponent implements OnInit {
 
   users: IUser[];
   loginForm = new FormGroup({
-    Email: new FormControl(''),
-    Password: new FormControl(''),
+    email: new FormControl(''),
+    password: new FormControl(''),
   });
 
   velkommen: string;
@@ -23,6 +23,7 @@ export class FrontpageComponent implements OnInit {
 
   ifLogin(){
     if (this.email != null){
+      this.router.navigate(['/Homepage']);
       this.velkommen = "Welcome! "
     }
     else{
@@ -32,12 +33,13 @@ export class FrontpageComponent implements OnInit {
 
   constructor(
     private adminPanelService : AdminPanelService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private router: Router) { }
 
   Login() { //sender en get request til min api om en user med userName x og pW y findes i databasen
     //console.warn(this.loginForm.value)
-    this.adminPanelService.Login(this.loginForm.value.Password,
-      this.loginForm.value.Email).subscribe(user => {
+    this.adminPanelService.Login(this.loginForm.value.email,
+      this.loginForm.value.password).subscribe(user => {
         console.warn(user);
         this.email = user.email;
         this.userId = user.userId;
@@ -49,13 +51,13 @@ export class FrontpageComponent implements OnInit {
   ngOnInit(): void {
     this.getusers();
     this.loginForm = this.formBuilder.group({
-      userName: [''],
-      pW: ['']
+      email: [''],
+      password: ['']
       });
   }
 
   getusers(){
-    this.getAllUsers()
+    this.adminPanelService.getAllUsers()
     .subscribe(users => this.users = users);
     
   }
