@@ -10,6 +10,7 @@ import { IUser } from '../Interfaces/IUser';
 export class AdminPanelService {
   private url = 'https://localhost:44344/api/users/';
 
+  userMail: string;
   constructor(private http: HttpClient) { }
 
   getAllUsers(): Observable<IUser[]> {
@@ -19,8 +20,9 @@ export class AdminPanelService {
   //GET
   Login(email: string, password: string): Observable<IUser> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    console.warn("METODEN BLEV KALDT!");
-    console.warn(this.url + "user?email=" + email + "&password=" + password );
+    //console.warn("METODEN BLEV KALDT!");
+    //console.warn(this.url + "user?email=" + email + "&password=" + password );
+    this.userMail = email;
     return this.http.get<IUser>(this.url + "login?email=" + email + "&password=" + password, httpOptions)
   }
   createUser(user: IUser): Observable<IUser> {
@@ -34,7 +36,5 @@ export class AdminPanelService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.delete<IUser>(this.url + userId, httpOptions);
   } 
-
-
 
 }

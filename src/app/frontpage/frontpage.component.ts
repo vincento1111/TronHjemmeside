@@ -17,13 +17,16 @@ export class FrontpageComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  velkommen: string;
+  velkommen: string = "test123";
   email: string;
   userId: number;
+
+  testString: string = "virker det? ja";
 
   ifLogin(){
     if (this.email != null){
       this.router.navigate(['/Homepage']);
+      
       this.velkommen = "Welcome! "
     }
     else{
