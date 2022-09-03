@@ -47,16 +47,13 @@ export class FrontpageComponent implements OnInit {
         this.email = user.email;
         this.userId = user.userId;
         this.ifLogin();
-        return this.users.push(user) //subscribe er vigtig
+        //return this.users.push(user) //subscribe er vigtig
       });
   }
 
   ngOnInit(): void {
     this.getusers();
-    this.loginForm = this.formBuilder.group({
-      email: [''],
-      password: ['']
-      });
+
   }
 
   getusers(){

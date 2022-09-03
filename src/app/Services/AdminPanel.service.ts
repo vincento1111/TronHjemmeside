@@ -21,14 +21,13 @@ export class AdminPanelService {
   Login(email: string, password: string): Observable<IUser> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     //console.warn("METODEN BLEV KALDT!");
-    //console.warn(this.url + "user?email=" + email + "&password=" + password );
+    console.warn(this.url + "login?email=" + email + "&password=" + password );
     this.userMail = email;
     return this.http.get<IUser>(this.url + "login?email=" + email + "&password=" + password, httpOptions)
   }
   createUser(user: IUser): Observable<IUser> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.post<IUser>(this.url,
-      user, httpOptions);
+    return this.http.post<IUser>(this.url, user, httpOptions);
   }
 
   deleteUserById(userId: number): Observable<IUser> {
@@ -36,5 +35,12 @@ export class AdminPanelService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.delete<IUser>(this.url + userId, httpOptions);
   } 
+
+  getUserId(email: string): Observable<IUser>{
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    console.warn("Http get request to:"+ this.url + "id?email=" + email, httpOptions);
+    return this.http.get<IUser>(this.url + "id?email=" + email, httpOptions);
+  }
+
 
 }

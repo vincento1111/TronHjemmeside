@@ -26,7 +26,7 @@
       Delete
     
     </button>
-      <ul class="users">
+      <ul class="users1">
         <li *ngFor="let user of users">
           <span class="badge">{{user.userId}}</span> {{user.email}}
           <button class="btn btn-xs btn-danger" (click)="deleteUser(user.userId)">Delete</button>

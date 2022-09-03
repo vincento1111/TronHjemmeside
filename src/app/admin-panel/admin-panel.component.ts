@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class AdminPanelComponent implements OnInit {
 
 
-  users: IUser[] = [];
+  users: IUser[];
 
   userForm1 = new FormGroup({
     email: new FormControl(''),
@@ -33,16 +33,16 @@ export class AdminPanelComponent implements OnInit {
 
   onSubmit() {
 
-    
     this.adminPanelService.createUser(this.userForm1.getRawValue()).subscribe(user =>{
       return this.users.push(user);
+      
     })
   }
 
   deleteUser(userId: number) : void {
     this.adminPanelService.deleteUserById(userId).subscribe(users =>{
       this.getusers();
-
+      
     });
   }
 
