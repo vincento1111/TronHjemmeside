@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IUser } from '../Interfaces/IUser';
+import { Items } from '../Interfaces/Items';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminPanelService {
   private url = 'https://localhost:44344/api/users/';
+  private ItemsUrl = 'https://localhost:44344/api/items/';
 
   userMail: string;
   constructor(private http: HttpClient) { }
@@ -27,7 +29,13 @@ export class AdminPanelService {
   }
   createUser(user: IUser): Observable<IUser> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    console.warn(this.url, user);
     return this.http.post<IUser>(this.url, user, httpOptions);
+  }
+  updateUser(user: IUser): Observable<IUser> {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    console.warn("this is my update user ",this.url, user)
+    return this.http.put<IUser>(this.url, user, httpOptions);
   }
 
   deleteUserById(userId: number): Observable<IUser> {
@@ -42,5 +50,11 @@ export class AdminPanelService {
     return this.http.get<IUser>(this.url + "id?email=" + email, httpOptions);
   }
 
+  createItem(item: Items): Observable<Items> {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    console.warn(this.ItemsUrl, item);
+    return this.http.post<Items>(this.ItemsUrl, item, httpOptions);
+
+  }
 
 }

@@ -1,1 +1,11 @@
-<p>profile-page works!</p>
+<p>Porfile Page</p>
+
+<form >
+    <p><label>Profile Description:</label></p>
+    <textarea #myArea id="MyTextArea" name="Description" rows="4" cols="50" >{{profileDes}}</textarea>
+    
+    <br>
+    <button type="submit" (click)="updateProfile(myArea.value)">Update</button>
+</form> 
+
+  

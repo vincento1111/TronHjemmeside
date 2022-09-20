@@ -1,5 +1,25 @@
 <h2>Create User</h2>
-<form [formGroup]="userForm1" (ngSubmit)="onSubmit()">
+<form [formGroup]="userForm1" (ngSubmit)="createUser()">
+    <label>
+      Email:
+      <input type="text" formControlName="email">
+    </label>
+  <br>
+    <label>
+      Password:
+      <input type="text" formControlName="password">
+    </label>
+    <button type="submit">Submit
+    </button>
+  </form>
+
+  <h2>Update User!</h2>
+  <form [formGroup]="updateForm" (ngSubmit)="updateUser()">
+    <label>
+      Id:
+      <input type="number" formControlName="userId">
+    </label>
+    <br>
     <label>
       Email:
       <input type="text" formControlName="email">
@@ -12,8 +32,6 @@
   
     <button type="submit">Submit
     </button>
-  
-
   </form>
 
   <h2>Delete User By ID</h2>
@@ -32,3 +50,25 @@
           <button class="btn btn-xs btn-danger" (click)="deleteUser(user.userId)">Delete</button>
         </li>
       </ul>
+
+
+      <h2>Create Item!</h2>
+
+      <form [formGroup]="itemForm" (ngSubmit)="createItem()">
+        <label>
+          Item name:
+          <input type="text" formControlName="itemName">
+        </label>
+      <br>
+        <label>
+          ItemDescription:
+          <input type="text" formControlName="itemDescription">
+        </label>
+        <br>
+        <label>
+          OffensiveStat:
+          <input type="number" formControlName="offensiveStat">
+        </label>
+        <button type="submit">Submit
+        </button>
+      </form>

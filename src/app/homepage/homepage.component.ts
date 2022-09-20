@@ -13,7 +13,7 @@ import { AdminPanelService } from '../Services/AdminPanel.service';
 })
 export class HomepageComponent implements OnInit {
   
-  usersStats: IUserStats[];
+  //usersStats: IUserStats[];
   
   userId:any;
   email: string;
@@ -58,8 +58,6 @@ export class HomepageComponent implements OnInit {
       this.level = user.level;
       this.life = user.life;
     });
-
-
   }
 
 }
