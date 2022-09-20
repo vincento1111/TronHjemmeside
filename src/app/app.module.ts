@@ -13,6 +13,7 @@ import { ProfilePageComponent } from './profilepage/profile-page.component';
 import { FrontpageComponent } from './frontpage/frontpage.component';
 import { FormsModule } from '@angular/forms';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { TrainingPageComponent } from './training-page/training-page.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     ProfilePageComponent,
     FrontpageComponent,
     AdminPanelComponent,
+    TrainingPageComponent,
   ],
   imports: [
     BrowserModule,

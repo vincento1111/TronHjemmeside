@@ -17,13 +17,16 @@ export class FrontpageComponent implements OnInit {
     password: new FormControl(''),
   });
 
-  velkommen: string;
+  velkommen: string = "test123";
   email: string;
   userId: number;
+
+  testString: string = "virker det? ja";
 
   ifLogin(){
     if (this.email != null){
       this.router.navigate(['/Homepage']);
+      
       this.velkommen = "Welcome! "
     }
     else{
@@ -44,16 +47,13 @@ export class FrontpageComponent implements OnInit {
         this.email = user.email;
         this.userId = user.userId;
         this.ifLogin();
-        return this.users.push(user) //subscribe er vigtig
+        //return this.users.push(user) //subscribe er vigtig
       });
   }
 
   ngOnInit(): void {
     this.getusers();
-    this.loginForm = this.formBuilder.group({
-      email: [''],
-      password: ['']
-      });
+
   }
 
   getusers(){

@@ -6,6 +6,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { FrontpageComponent } from './frontpage/frontpage.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProfilePageComponent } from './profilepage/profile-page.component';
+import { TrainingPageComponent } from './training-page/training-page.component';
 
 const routes: Routes = [
   {
@@ -23,8 +24,11 @@ const routes: Routes = [
   {
     path: 'AdminPanel',
     component: AdminPanelComponent
+  },
+  {
+    path: 'TrainingPage',
+    component: TrainingPageComponent
   }
-
 
 ];
 
