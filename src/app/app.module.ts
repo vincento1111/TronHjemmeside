@@ -14,6 +14,8 @@ import { FrontpageComponent } from './frontpage/frontpage.component';
 import { FormsModule } from '@angular/forms';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { TrainingPageComponent } from './training-page/training-page.component';
+import { ItemsComponent } from './items/items.component';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { TrainingPageComponent } from './training-page/training-page.component';
     FrontpageComponent,
     AdminPanelComponent,
     TrainingPageComponent,
+    ItemsComponent,
+    ShopComponent,
   ],
   imports: [
     BrowserModule,
