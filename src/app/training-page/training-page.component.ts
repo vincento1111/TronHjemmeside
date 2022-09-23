@@ -31,15 +31,10 @@ export class TrainingPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.email = this.adminPanelService.userMail;
-    this.getUserId();
+    this.userId = this.adminPanelService.userId;
+    this.getUserStats(this.userId);
   }
-  getUserId(){
-    this.adminPanelService.getUserId(this.email).subscribe(userId=> {
-    console.warn("my user id is",userId);
-    this.userId = userId;
-    this.getUserStats(userId);
-  });
-  }
+
   getUserStats(userId){
     this.userStatsService.getUserStat(userId).subscribe(user =>{
       console.warn("my user is",user);

@@ -47,7 +47,8 @@ export class FrontpageComponent implements OnInit {
         this.email = user.email;
         this.userId = user.userId;
         this.ifLogin();
-        //return this.users.push(user) //subscribe er vigtig
+
+        this.adminPanelService.saveId(user.userId)
       });
   }
 

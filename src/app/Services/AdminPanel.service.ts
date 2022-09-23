@@ -13,7 +13,7 @@ export class AdminPanelService {
   private url = 'https://localhost:44344/api/users/';
   private ItemsUrl = 'https://localhost:44344/api/items/';
   private InventoryUrl = 'https://localhost:44344/api/Inventory/';
-
+  userId: number;
   userMail: string;
   constructor(private http: HttpClient) { }
 
@@ -30,7 +30,11 @@ export class AdminPanelService {
     //console.warn("METODEN BLEV KALDT!");
     console.warn(this.url + "login?email=" + email + "&password=" + password );
     this.userMail = email;
+
     return this.http.get<IUser>(this.url + "login?email=" + email + "&password=" + password, httpOptions)
+  }
+  saveId(id: number){
+    this.userId = id;
   }
   createUser(user: IUser): Observable<IUser> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
@@ -59,13 +63,18 @@ export class AdminPanelService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     console.warn(this.ItemsUrl, item);
     return this.http.post<Items>(this.ItemsUrl, item, httpOptions);
-
   }
 
   buyItem(Inventory: Inventory): Observable<Inventory>{
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     console.warn(this.InventoryUrl, Inventory);
     return this.http.post<Inventory>(this.InventoryUrl, Inventory, httpOptions);
+  }
+
+  getUserInventory(userId: any):Observable<Inventory>{
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    console.warn(this.InventoryUrl + "UserInventory?id=" + userId);
+    return this.http.get<Inventory>(this.InventoryUrl + "UserInventory?id=" + userId, httpOptions);
 
   }
 

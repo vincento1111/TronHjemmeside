@@ -11,7 +11,6 @@ import { ProfileService } from '../Services/ProfileService';
 export class ProfilePageComponent implements OnInit {
 
   userId: any;
-  email: string;
 
   profileDes: string;
   constructor(
@@ -20,15 +19,8 @@ export class ProfilePageComponent implements OnInit {
     private profileService: ProfileService) { }
 
   ngOnInit(): void {
-    this.email = this.adminPanelService.userMail;
-    this.getUserId();
-  }
-  getUserId() {
-    this.adminPanelService.getUserId(this.email).subscribe(userId => {
-      console.warn("my user id is", userId);
-      this.userId = userId;
-      this.getProfile(userId);
-    });
+    this.userId = this.adminPanelService.userId
+    this.getProfile(this.userId);
   }
 
   getProfile(profileId){
@@ -39,9 +31,7 @@ export class ProfilePageComponent implements OnInit {
   updateProfile(profileDes) {
     this.profileService.getProfile(this.userId).subscribe(profile =>{
       profile.profileDes = profileDes
-      
       this.profileService.updateProfile(profile).subscribe(user =>{
-       
       });
     })
   }

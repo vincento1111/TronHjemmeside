@@ -12,10 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./admin-panel.component.css']
 })
 export class AdminPanelComponent implements OnInit {
-
-
   users: IUser[];
-
   items: Items[];
 
   userForm1 = new FormGroup({
@@ -74,5 +71,4 @@ export class AdminPanelComponent implements OnInit {
     this.adminPanelService.getAllItems()
     .subscribe(items => this.items = items);
   }
-
 }
