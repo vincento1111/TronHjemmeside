@@ -1,74 +1,90 @@
 <h2>Create User</h2>
 <form [formGroup]="userForm1" (ngSubmit)="createUser()">
-    <label>
-      Email:
-      <input type="text" formControlName="email">
-    </label>
-  <br>
-    <label>
-      Password:
-      <input type="text" formControlName="password">
-    </label>
-    <button type="submit">Submit
-    </button>
-  </form>
-
-  <h2>Update User!</h2>
-  <form [formGroup]="updateForm" (ngSubmit)="updateUser()">
-    <label>
-      Id:
-      <input type="number" formControlName="userId">
-    </label>
-    <br>
-    <label>
-      Email:
-      <input type="text" formControlName="email">
-    </label>
-  <br>
-    <label>
-      Password:
-      <input type="text" formControlName="password">
-    </label>
-  
-    <button type="submit">Submit
-    </button>
-  </form>
-
-  <h2>Delete User By ID</h2>
   <label>
-    ID:
-    <input type="number" #id>
+    Email:
+    <input type="text" formControlName="email">
   </label>
-  
-  <button (click)="deleteUser(id.value); id.value=''">
-      Delete
-    
-    </button>
-      <ul class="users1">
-        <li *ngFor="let user of users">
-          <span class="badge">{{user.userId}}</span> {{user.email}}
-          <button class="btn btn-xs btn-danger" (click)="deleteUser(user.userId)">Delete</button>
-        </li>
-      </ul>
+  <br>
+  <label>
+    Password:
+    <input type="text" formControlName="password">
+  </label>
+  <button type="submit">Submit
+  </button>
+</form>
+<hr>
+
+<h2>Update User!</h2>
+<form [formGroup]="updateForm" (ngSubmit)="updateUser()">
+  <label>
+    Id:
+    <input type="number" formControlName="userId">
+  </label>
+  <br>
+  <label>
+    Email:
+    <input type="text" formControlName="email">
+  </label>
+  <br>
+  <label>
+    Password:
+    <input type="text" formControlName="password">
+  </label>
+
+  <button type="submit">Submit
+  </button>
+</form>
+<hr>
+
+<h2>Delete User By ID</h2>
+<label>
+  ID:
+  <input type="number" #id>
+</label>
+
+<button (click)="deleteUser(id.value); id.value=''">
+  Delete
+</button>
+<ul class="users1">
+  <li *ngFor="let user of users">
+    <span class="badge">{{user.userId}}</span> {{user.email}}
+    <button class="btn btn-xs btn-danger" (click)="deleteUser(user.userId)">Delete</button>
+  </li>
+</ul>
+<hr>
 
 
-      <h2>Create Item!</h2>
+<h2>Create Item!</h2>
 
-      <form [formGroup]="itemForm" (ngSubmit)="createItem()">
-        <label>
-          Item name:
-          <input type="text" formControlName="itemName">
-        </label>
-      <br>
-        <label>
-          ItemDescription:
-          <input type="text" formControlName="itemDescription">
-        </label>
-        <br>
-        <label>
-          OffensiveStat:
-          <input type="number" formControlName="offensiveStat">
-        </label>
-        <button type="submit">Submit
-        </button>
-      </form>
+<form [formGroup]="itemForm" (ngSubmit)="createItem()">
+  <label>
+    Item name:
+    <input type="text" formControlName="itemName">
+  </label>
+  <br>
+  <label>
+    ItemDescription:
+    <input type="text" formControlName="itemDescription">
+  </label>
+  <br>
+  <label>
+    OffensiveStat:
+    <input type="number" formControlName="offensiveStat">
+  </label>
+  <br>
+  <label>
+    Value:
+    <input type="number" formControlName="value">
+  </label>
+  <button type="submit">Submit
+  </button>
+</form>
+<hr>
+
+ <h2>List of Items</h2>
+
+<ul class="items">
+  <li *ngFor="let item of items">
+    <span class="badge">ID: {{item.itemId}}</span> Item Name: {{item.itemName}} Value:{{item.value}}
+  </li>
+</ul>

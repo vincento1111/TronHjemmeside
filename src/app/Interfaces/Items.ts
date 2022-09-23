@@ -3,5 +3,6 @@ export interface Items{
     itemName:string;
     itemDescription:string;
     offensiveStat:number;
+    value:number;
 
 }
