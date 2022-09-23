@@ -1,1 +1,5 @@
-<p>items works!</p>
+<ul class="items">
+    <li *ngFor="let item of items">
+      <span class="badge">ID: {{item.itemId}}</span> Item Name: {{item.itemName}} Value:{{item.value}}
+    </li>
+  </ul>

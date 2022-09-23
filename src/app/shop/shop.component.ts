@@ -26,11 +26,9 @@ export class ShopComponent implements OnInit {
     this.adminPanelService.getAllItems()
     .subscribe(items => this.items = items);
   }
-
+  //Her opretter jeg en inventory/item og tilknytter den til brugeren som er logged på.
   buyItem(ItemId: any){
-    var Inventory = {
-      userid:this.userId, itemId:ItemId
-    }
+    var Inventory = { userid:this.userId, itemId:ItemId }
     this.adminPanelService.buyItem(Inventory).subscribe(userId => {
 
     });

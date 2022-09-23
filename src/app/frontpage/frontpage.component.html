@@ -15,16 +15,22 @@
   <br>
     <button type="submit">Submit</button>
 </form>
-
-<p>{{velkommen}}</p> 
+<hr>
 
   <h2>Register</h2>
 <p>Please fill in this form to create an account.</p>
+<!-- Her oprettes bruger, de udfylder formen og derefter bliver deres email og password sendt indtil min opret bruger metode. -->
+<form [formGroup]="userForm1" (ngSubmit)="createUser()">
+  <label>
+    Email:
+    <input type="text" formControlName="email">
+  </label>
+  <br>
+  <label>
+    Password:
+    <input type="text" formControlName="password">
+  </label>
+  <button type="submit">Submit
+  </button>
+</form>
 <hr>
-
-<label for="email"><b>Email</b></label>
-<input type="text" placeholder="Enter Email" name="email" id="email" required>
-
-<label for="psw"><b>Password</b></label>
-<input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-

@@ -14,7 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class AdminPanelComponent implements OnInit {
   users: IUser[];
   items: Items[];
-
+//der er lavet 3 forms på admin panel siden. en til at oprette kontoer, en anden til et update og en tredje til at oprette items.
   userForm1 = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
@@ -39,7 +39,7 @@ export class AdminPanelComponent implements OnInit {
     this.getusers();
     this.getItems();
   }
-
+  //har tager vi alle brugere og putter dem i en liste af brugere
   getusers(): void{
     this.adminPanelService.getAllUsers()
     .subscribe(users => this.users = users);
@@ -55,7 +55,8 @@ export class AdminPanelComponent implements OnInit {
       return this.users.push(user);
     })
   }
-
+  //der er en knap i html hvor vi bliver sendt til den her delete user metode med det ID der skal bruges til at slette en user.
+  //vi tager så userId variblen og slette useren som har det ID
   deleteUser(userId: number) : void {
     this.adminPanelService.deleteUserById(userId).subscribe(users =>{
       this.getusers();

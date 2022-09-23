@@ -17,7 +17,7 @@ export class HomepageComponent implements OnInit {
   
   userId:any;
   email: string;
-
+//Her laver jeg variabler som jeg kan gemme min brugers oplysninger i, jeg kunne sikkert gøre det bedre, men jeg løb tør for tid
   statId: number;
   strength:number;
   defense:number;
@@ -38,7 +38,7 @@ export class HomepageComponent implements OnInit {
     this.getUserStats(this.userId);
 
   }
-
+//Her henter jeg brugerens stats som tilhøre deres ID og sætter deres stats inds i variabler som bliver brugt i min HTML
   getUserStats(userId){
     this.userStatsService.getUserStat(userId).subscribe(user =>{
       console.warn(user);

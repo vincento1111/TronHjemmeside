@@ -17,12 +17,17 @@ export class FrontpageComponent implements OnInit {
     password: new FormControl(''),
   });
 
+  userForm1 = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl(''),
+  });
+  
   velkommen: string = "test123";
   email: string;
   userId: number;
 
   testString: string = "virker det? ja";
-
+  //navigere til user homepage hvis login metoden returnere de ønskede resultat.
   ifLogin(){
     if (this.email != null){
       this.router.navigate(['/Homepage']);
@@ -36,7 +41,6 @@ export class FrontpageComponent implements OnInit {
 
   constructor(
     private adminPanelService : AdminPanelService,
-    private formBuilder: FormBuilder,
     private router: Router) { }
 
   Login() { //sender en get request til min api om en user med userName x og pW y findes i databasen
@@ -51,17 +55,21 @@ export class FrontpageComponent implements OnInit {
         this.adminPanelService.saveId(user.userId)
       });
   }
-
+//går i gang på sidens opstart.
   ngOnInit(): void {
     this.getusers();
 
   }
-
+  //Her tilføjer jeg en bruger med værdierne som ligger i userform.
+  createUser() {
+    this.adminPanelService.createUser(this.userForm1.getRawValue()).subscribe(user =>{
+      return this.users.push(user);
+    })
+  }
+  
   getusers(){
     this.adminPanelService.getAllUsers()
     .subscribe(users => this.users = users);
     
   }
-
-
 }
