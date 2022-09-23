@@ -4,6 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IUser } from '../Interfaces/IUser';
 import { Items } from '../Interfaces/Items';
+import { Inventory } from '../Interfaces/Inventory';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,16 @@ import { Items } from '../Interfaces/Items';
 export class AdminPanelService {
   private url = 'https://localhost:44344/api/users/';
   private ItemsUrl = 'https://localhost:44344/api/items/';
+  private InventoryUrl = 'https://localhost:44344/api/Inventory/';
 
   userMail: string;
   constructor(private http: HttpClient) { }
 
   getAllUsers(): Observable<IUser[]> {
     return this.http.get<IUser[]>(this.url);
+  }
+  getAllItems(): Observable<Items[]> {
+    return this.http.get<Items[]>(this.ItemsUrl);
   }
   
   //GET
@@ -54,6 +59,13 @@ export class AdminPanelService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     console.warn(this.ItemsUrl, item);
     return this.http.post<Items>(this.ItemsUrl, item, httpOptions);
+
+  }
+
+  buyItem(Inventory: Inventory): Observable<Inventory>{
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    console.warn(this.InventoryUrl, Inventory);
+    return this.http.post<Inventory>(this.InventoryUrl, Inventory, httpOptions);
 
   }
 

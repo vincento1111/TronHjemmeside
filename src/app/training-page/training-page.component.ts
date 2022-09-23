@@ -49,7 +49,7 @@ export class TrainingPageComponent implements OnInit {
       this.dexterity = user.dexterity;
     });
   }
-  //need to figure this out asap /
+  //done
   updateUserStats(stat) {
     this.userStatsService.getUserStat(this.userId).subscribe(user =>{
       if(stat == 1 ){

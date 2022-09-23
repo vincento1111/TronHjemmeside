@@ -32,13 +32,15 @@ export class AdminPanelComponent implements OnInit {
   itemForm = new FormGroup({
     itemName: new FormControl(''),
     itemDescription: new FormControl(''),
-    offensiveStat: new FormControl()
+    offensiveStat: new FormControl(),
+    value: new FormControl()
   })
 
   constructor(private adminPanelService: AdminPanelService) { }
 
   ngOnInit(): void {
     this.getusers();
+    this.getItems();
   }
 
   getusers(): void{
@@ -68,5 +70,9 @@ export class AdminPanelComponent implements OnInit {
     });
   }
 
+  getItems(): void{
+    this.adminPanelService.getAllItems()
+    .subscribe(items => this.items = items);
+  }
 
 }
