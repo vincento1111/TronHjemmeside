@@ -46,10 +46,11 @@ jobs:
         with:
           name: node-app
 
-      - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v2
-        id: deploy-to-webapp
-        with:
+      - name: Login to Azure
+          uses: azure/login@v1
+          with:
+            creds: '{"clientId": "${{ secrets.AZURE_CLIENT_ID }}", "clientSecret": "${{ secrets.AZURE_CLIENT_SECRET }}", "tenantId": "${{ secrets.AZURE_TENANT_ID }}"}'
+
           app-name: 'TronCity'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9872AE53C24840509C29F43821E8FD94 }}
