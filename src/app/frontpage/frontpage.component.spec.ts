@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FrontpageComponent } from './frontpage.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('FrontpageComponent', () => {
   let component: FrontpageComponent;
@@ -8,7 +9,8 @@ describe('FrontpageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FrontpageComponent ]
+      declarations: [ FrontpageComponent ],
+      imports: [HttpClientModule],
     })
     .compileComponents();
 
