@@ -12,6 +12,7 @@ import { ShopComponent } from './shop/shop.component';
 
 const routes: Routes = [
   //Her laver jeg paths til alle min sider
+  //test
   {
     path:'',
     component: FrontpageComponent
