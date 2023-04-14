@@ -1,3 +1,5 @@
 {
-    "angular.enable-strict-mode-prompt": false
+    "angular.enable-strict-mode-prompt": false,
+    "appService.defaultWebAppToDeploy": "/subscriptions/42ad0db5-d044-4e68-a1a8-664f49997507/resourceGroups/Tron-App/providers/Microsoft.Web/sites/TronCity",
+    "appService.deploySubpath": "."
 }
