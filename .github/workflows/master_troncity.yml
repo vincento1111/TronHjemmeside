@@ -57,5 +57,5 @@ jobs:
 
           app-name: 'TronCity'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9872AE53C24840509C29F43821E8FD94 }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: .
