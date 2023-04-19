@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "node dist/tron-hjemmeside/server.js",
     "build": "ng build",
+    "postbuild": "copyfiles server.js dist/tron-hjemmeside",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -22,7 +23,8 @@
     "express": "^4.18.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "copyfiles": "^2.6.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.1.3",
