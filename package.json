@@ -24,7 +24,7 @@
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4",
-    "copyfiles": "^2.6.0"
+    "copyfiles": "^2.4.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.1.3",
