@@ -6,8 +6,8 @@
 	routerLinkActive="activebutton">HomePage</a>
 	<a class="button"routerLink="/Profilepage"
 	routerLinkActive="activebutton">ProfilePage</a> 
-	<a class="button"routerLink="/AdminPanel"
-	routerLinkActive="activebutton">AdminPanel</a> 
+	<a class="button"routerLink="/AdminPanel" *ngIf="isAdmin"
+    routerLinkActive="activebutton">AdminPanel</a>
 	<a class="button"routerLink="/TrainingPage"
 	routerLinkActive="activebutton">TrainingPage</a>
 	<a class="button"routerLink="/Items"

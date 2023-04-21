@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminPanelService } from '../Services/AdminPanel.service';
 
 @Component({
   selector: 'app-header',
@@ -6,11 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  email: string;
+  isAdmin: boolean = false;
 
-
-  constructor() { }
+  constructor(
+    
+    private adminPanelService: AdminPanelService) { }
 
   ngOnInit(): void {
+    this.email = this.adminPanelService.userMail; // Replace this with the actual role string from your application
+    this.isAdmin = this.email === 'Admin';
   }
-
 }
