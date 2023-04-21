@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminPanelService } from '../Services/AdminPanel.service';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +12,21 @@ export class HeaderComponent implements OnInit {
   isAdmin: boolean = false;
 
   constructor(
-    
-    private adminPanelService: AdminPanelService) { }
+    private router: Router,
+    private adminPanelService: AdminPanelService) {
+      // Subscribe to router events
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.updateAdminStatus();
+        }
+      });
+    }
 
   ngOnInit(): void {
+    this.updateAdminStatus();
+  }
+
+  updateAdminStatus(): void {
     this.email = this.adminPanelService.userMail; // Replace this with the actual role string from your application
     this.isAdmin = this.email === 'Admin';
   }
