@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FrontpageComponent } from './frontpage/frontpage.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'TronHjemmeside';
+  title = 'TronHjemmeside'
+  isFrontPage: boolean = false;
+
+  onActivate(componentRef: any) {
+    this.isFrontPage = componentRef instanceof FrontpageComponent;
+  }
 }

@@ -62,10 +62,18 @@ export class FrontpageComponent implements OnInit {
   }
   //Her tilføjer jeg en bruger med værdierne som ligger i userform.
   createUser() {
-    this.adminPanelService.createUser(this.userForm1.getRawValue()).subscribe(user =>{
-      return this.users.push(user);
-    })
+    this.adminPanelService.createUser(this.userForm1.getRawValue()).subscribe(user => {
+      this.users.push(user);
+  
+      // Call the Login function after successful user creation
+      this.loginForm.patchValue({
+        email: this.userForm1.get('email').value,
+        password: this.userForm1.get('password').value
+      });
+      this.Login();
+    });
   }
+  
   
   getusers(){
     this.adminPanelService.getAllUsers()
