@@ -1,36 +1,31 @@
-<h2>Login</h2>
+<div class="container">
+  <h2>Login</h2>
 
-<form [formGroup]="loginForm" (ngSubmit)="Login()">
-
-    <label #email>
+  <form [formGroup]="loginForm" (ngSubmit)="Login()">
+    <label>
       Username:
       <input type="text" formControlName="email">
     </label>
-  <br>
-    <label #password>
+    <label>
       Password:
-      
       <input type="text" formControlName="password">
     </label>
-  <br>
     <button type="submit">Submit</button>
-</form>
-<hr>
+  </form>
+  <hr>
 
   <h2>Register</h2>
-<p>Please fill in this form to create an account.</p>
-<!-- Her oprettes bruger, de udfylder formen og derefter bliver deres email og password sendt indtil min opret bruger metode. -->
-<form [formGroup]="userForm1" (ngSubmit)="createUser()">
-  <label>
-    Email:
-    <input type="text" formControlName="email">
-  </label>
-  <br>
-  <label>
-    Password:
-    <input type="text" formControlName="password">
-  </label>
-  <button type="submit">Submit
-  </button>
-</form>
-<hr>
+  <p>Please fill in this form to create an account.</p>
+  <form [formGroup]="userForm1" (ngSubmit)="createUser()">
+    <label>
+      Email:
+      <input type="text" formControlName="email">
+    </label>
+    <label>
+      Password:
+      <input type="text" formControlName="password">
+    </label>
+    <button type="submit">Submit</button>
+  </form>
+  <hr>
+</div>
