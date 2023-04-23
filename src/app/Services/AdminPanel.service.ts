@@ -94,4 +94,22 @@ export class AdminPanelService {
 
   }
 
+  saveUserEmail(email: string): void {
+    localStorage.setItem('userEmail', email);
+  }
+  
+  getUserId2(): number | null {
+    const userId = localStorage.getItem('userId');
+    return userId ? parseInt(userId) : null;
+  }
+  // Save user's ID in localStorage
+  saveUserId(userId: number): void {
+    localStorage.setItem('userId', userId.toString());
+  }
+  getUserEmail(): string | null {
+    return localStorage.getItem('userEmail');
+  }
+  
+
+
 }

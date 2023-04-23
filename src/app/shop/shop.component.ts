@@ -18,7 +18,8 @@ export class ShopComponent implements OnInit {
 
   ngOnInit(): void {
     this.getItems();
-    this.userId = this.adminPanelService.userId;
+    //this.email = this.adminPanelService.getUserEmail();
+    this.userId = this.adminPanelService.getUserId2();
   }
 
   

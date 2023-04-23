@@ -38,23 +38,22 @@ export class FrontpageComponent implements OnInit {
       this.velkommen = "Account not found"
     }
   }
-
   constructor(
     private adminPanelService : AdminPanelService,
     private router: Router) { }
 
-  Login() { //sender en get request til min api om en user med userName x og pW y findes i databasen
-    //console.warn(this.loginForm.value)
-    this.adminPanelService.Login(this.loginForm.value.email,
-      this.loginForm.value.password).subscribe(user => {
+    Login() {
+      this.adminPanelService.Login(this.loginForm.value.email, this.loginForm.value.password).subscribe(user => {
         console.warn(user);
         this.email = user.email;
         this.userId = user.userId;
         this.ifLogin();
-
-        this.adminPanelService.saveId(user.userId)
+    
+        this.adminPanelService.saveUserId(user.userId); // Save the user's ID
+        this.adminPanelService.saveUserEmail(user.email); // Save the user's email
       });
-  }
+    }
+    
 //går i gang på sidens opstart.
   ngOnInit(): void {
     this.getusers();

@@ -19,7 +19,8 @@ export class ProfilePageComponent implements OnInit {
     private profileService: ProfileService) { }
 
   ngOnInit(): void {
-    this.userId = this.adminPanelService.userId
+    //this.email = this.adminPanelService.getUserEmail();
+    this.userId = this.adminPanelService.getUserId2();
     this.getProfile(this.userId);
   }
 

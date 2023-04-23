@@ -33,8 +33,9 @@ export class HomepageComponent implements OnInit {
     private adminPanelService: AdminPanelService) { }
 
   ngOnInit(): void {
-    this.email = this.adminPanelService.userMail;
-    this.userId = this.adminPanelService.userId;
+    this.email = this.adminPanelService.getUserEmail();
+    this.userId = this.adminPanelService.getUserId2();
+    
     this.getUserStats(this.userId);
 
   }

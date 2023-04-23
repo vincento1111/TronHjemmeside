@@ -18,7 +18,8 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
     //Her gør jeg userId i lig med userId i min servive metode.
-    this.userId = this.adminPanelService.userId;
+    //this.email = this.adminPanelService.getUserEmail();
+    this.userId = this.adminPanelService.getUserId2();
     this.getInventory();
   }
 
