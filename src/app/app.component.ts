@@ -14,3 +14,4 @@ export class AppComponent {
     this.isFrontPage = componentRef instanceof FrontpageComponent;
   }
 }
+//useless comment dont think about it
