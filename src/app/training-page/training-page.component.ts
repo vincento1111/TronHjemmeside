@@ -22,6 +22,8 @@ export class TrainingPageComponent implements OnInit {
   speed:number;
   dexterity:number;
 
+  energy:number;
+
   userId:any;
   email: string;
 
@@ -42,6 +44,7 @@ export class TrainingPageComponent implements OnInit {
       this.speed = user.speed;
       this.defense = user.defense;
       this.dexterity = user.dexterity;
+      this.energy = user.energy;
     });
   }
 
