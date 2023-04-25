@@ -25,9 +25,11 @@ export class UserStatsService {
   }
   
 
-  updateUserStat(userId: number, statType: number): Observable<IUserStats> {
-    return this.http.put<IUserStats>(`${this.url}${userId}/${statType}`, {});
-  }
+ // UserStatsService
+incrementStat(userId: number, statName: string): Observable<IUserStats> {
+  return this.http.put<IUserStats>(`${this.url}IncrementStat?userId=${userId}&statName=${statName}`, {});
+}
+
   
   
   

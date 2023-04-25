@@ -45,19 +45,16 @@ export class TrainingPageComponent implements OnInit {
     });
   }
 
-updateUserStats(statType: number) {
-  this.userStatsService.updateUserStat(this.userId, statType).subscribe(user => {
-    // Update the local stats
-    if (statType === 1) {
-      this.strength++;
-    } else if (statType === 2) {
-      this.speed++;
-    } else if (statType === 3) {
-      this.defense++;
-    } else if (statType === 4) {
-      this.dexterity++;
-    }
+// ...
+updateUserStats(statName: string) {
+  this.userStatsService.incrementStat(this.userId, statName).subscribe(user => {
+    this.strength = user.strength;
+    this.speed = user.speed;
+    this.defense = user.defense;
+    this.dexterity = user.dexterity;
   });
 }
+// ...
+
   
 }
