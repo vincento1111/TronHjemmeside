@@ -9,5 +9,6 @@ export interface IUserStats{
     experience:number;
     life:number;
     money:number;
+    energy:number;
 
 }

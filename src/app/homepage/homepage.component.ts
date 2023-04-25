@@ -27,6 +27,7 @@ export class HomepageComponent implements OnInit {
   experience:number;
   life:number;
   money:number;
+  energy:number;
 
   constructor(
     private userStatsService: UserStatsService,
@@ -50,6 +51,7 @@ export class HomepageComponent implements OnInit {
       this.money = user.money;
       this.level = user.level;
       this.life = user.life;
+      this.energy = user.energy;
     });
   }
 
