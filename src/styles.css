@@ -9,8 +9,11 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  background-color: rgb(204, 204, 204);
+  background-color: #1a242f;
+  color: #ffffff;
 }
+
+
 
 .sticky-footer {
   position: fixed;
