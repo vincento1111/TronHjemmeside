@@ -23,11 +23,20 @@ export class UserStatsService {
     console.warn("Http get request to:"+ this.url + StatId, httpOptions);
     return this.http.get<IUserStats>(this.url+ StatId, httpOptions);
   }
-  updateUserStat(user: IUserStats):Observable<IUserStats>{
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    console.warn("this is my put request" + this.url , user, httpOptions)
-    return this.http.put<IUserStats>(this.url, user, httpOptions);
+  
+
+  updateUserStat(userId: number, statType: number): Observable<IUserStats> {
+    return this.http.put<IUserStats>(`${this.url}${userId}/${statType}`, {});
   }
+  
+  
+  
+
+  // updateUserStat(user: IUserStats):Observable<IUserStats>{
+  //   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+  //   console.warn("this is my put request" + this.url , user, httpOptions)
+  //   return this.http.put<IUserStats>(this.url, user, httpOptions);
+  // }
   
 
 }

@@ -44,31 +44,20 @@ export class TrainingPageComponent implements OnInit {
       this.dexterity = user.dexterity;
     });
   }
-  //done
-  updateUserStats(stat) {
-    this.userStatsService.getUserStat(this.userId).subscribe(user =>{
-      if(stat == 1 ){
-        user.strength++;
-        this.strength++;
-      }
-      if(stat == 2){
-        user.speed++;
-        this.speed++;
-      }
-      if(stat == 3){
-        user.defense++;
-        this.defense++;
-      }
-      if(stat == 4){
-        user.dexterity++;
-        this.dexterity++;
-      }
-      
-      console.warn(user);
-      this.userStatsService.updateUserStat(user).subscribe(user =>{
-       
-      });
 
-    });
-  } 
+updateUserStats(statType: number) {
+  this.userStatsService.updateUserStat(this.userId, statType).subscribe(user => {
+    // Update the local stats
+    if (statType === 1) {
+      this.strength++;
+    } else if (statType === 2) {
+      this.speed++;
+    } else if (statType === 3) {
+      this.defense++;
+    } else if (statType === 4) {
+      this.dexterity++;
+    }
+  });
+}
+  
 }

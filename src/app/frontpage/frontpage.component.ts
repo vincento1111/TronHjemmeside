@@ -42,21 +42,22 @@ export class FrontpageComponent implements OnInit {
     private adminPanelService : AdminPanelService,
     private router: Router) { }
 
-    Login() {
-      this.adminPanelService.Login(this.loginForm.value.email, this.loginForm.value.password).subscribe(user => {
-        console.warn(user);
-        this.email = user.email;
-        this.userId = user.userId;
-        this.ifLogin();
-    
-        this.adminPanelService.saveUserId(user.userId); // Save the user's ID
-        this.adminPanelService.saveUserEmail(user.email); // Save the user's email
-      });
-    }
+  Login() {
+    this.adminPanelService.Login(this.loginForm.value.email, this.loginForm.value.password).subscribe(user => {
+      console.warn(user);
+      this.email = user.email;
+      this.userId = user.userId;
+      this.ifLogin();
+  
+      this.adminPanelService.saveUserId(user.userId); // Save the user's ID
+      this.adminPanelService.saveUserEmail(user.email); // Save the user's email
+    });
+  }
     
 //går i gang på sidens opstart.
   ngOnInit(): void {
     this.getusers();
+    
 
   }
   //Her tilføjer jeg en bruger med værdierne som ligger i userform.
