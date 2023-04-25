@@ -54,6 +54,7 @@ updateUserStats(statName: string) {
     this.speed = user.speed;
     this.defense = user.defense;
     this.dexterity = user.dexterity;
+    this.energy = user.energy;
   });
 }
 
