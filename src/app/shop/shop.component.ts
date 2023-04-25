@@ -36,13 +36,14 @@ export class ShopComponent implements OnInit {
   buyItem(ItemId: any){
     var Inventory = { userid:this.userId, itemId:ItemId }
     this.adminPanelService.buyItem(Inventory).subscribe(userId => {
-
+      this.getUserStats(this.userId);
     });
+    
   }
 
   getUserStats(userId){
     this.userStatsService.getUserStat(userId).subscribe(user =>{
-      console.warn(user);
+      console.warn("my user is",user.money);
       this.money = user.money;
     });
   }
