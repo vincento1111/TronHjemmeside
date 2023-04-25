@@ -25,10 +25,11 @@ export class UserStatsService {
   }
   
 
- // UserStatsService
-incrementStat(userId: number, statName: string): Observable<IUserStats> {
-  return this.http.put<IUserStats>(`${this.url}IncrementStat?userId=${userId}&statName=${statName}`, {});
-}
+  // UserStatsService
+  incrementStat(userId: number, statName: string): Observable<IUserStats> {
+    console.warn(`${this.url}IncrementStat?userId=${userId}&statName=${statName}`);
+    return this.http.put<IUserStats>(`${this.url}IncrementStat?userId=${userId}&statName=${statName}`, {});
+  }
 
   
   

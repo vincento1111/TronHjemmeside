@@ -45,7 +45,6 @@ export class TrainingPageComponent implements OnInit {
     });
   }
 
-// ...
 updateUserStats(statName: string) {
   this.userStatsService.incrementStat(this.userId, statName).subscribe(user => {
     this.strength = user.strength;
@@ -54,7 +53,6 @@ updateUserStats(statName: string) {
     this.dexterity = user.dexterity;
   });
 }
-// ...
 
   
 }
