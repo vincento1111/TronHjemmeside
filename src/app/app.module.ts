@@ -16,6 +16,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { TrainingPageComponent } from './training-page/training-page.component';
 import { ItemsComponent } from './items/items.component';
 import { ShopComponent } from './shop/shop.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ShopComponent } from './shop/shop.component';
     TrainingPageComponent,
     ItemsComponent,
     ShopComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

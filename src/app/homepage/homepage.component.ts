@@ -17,6 +17,7 @@ export class HomepageComponent implements OnInit {
   
   userId:any;
   email: string;
+  password:string;
 //Her laver jeg variabler som jeg kan gemme min brugers oplysninger i, jeg kunne sikkert gøre det bedre, men jeg løb tør for tid
   statId: number;
   strength:number;
@@ -36,6 +37,7 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
     this.email = this.adminPanelService.getUserEmail();
     this.userId = this.adminPanelService.getUserId2();
+    this.password = this.adminPanelService.getUserPassword();
     
     this.getUserStats(this.userId);
 

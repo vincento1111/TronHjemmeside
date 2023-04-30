@@ -8,10 +8,10 @@ import { IUserStats } from '../Interfaces/IUserStats';
   providedIn: 'root'
 })
 export class UserStatsService {
-  //WORKS FOR LOCAL!!!
-  //private url = 'https://localhost:44344/api/UserStats/';
+  // WORKS FOR LOCAL!!!
+  // private url = 'https://localhost:44344/api/UserStats/';
 
-  //WORKS FOR AZURE
+  // //WORKS FOR AZURE
   private url = 'https://tronapi.azurewebsites.net/api/UserStats/'
 
 

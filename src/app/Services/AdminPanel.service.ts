@@ -24,6 +24,7 @@ export class AdminPanelService {
 
   userId: number;
   userMail: string;
+  userPassword:string;
   constructor(private http: HttpClient) { }
 
   getAllUsers(): Observable<IUser[]> {
@@ -108,6 +109,13 @@ export class AdminPanelService {
   }
   getUserEmail(): string | null {
     return localStorage.getItem('userEmail');
+  }
+  saveUserPassword(password: string): void{
+    localStorage.setItem('userPassword', password);
+  }
+
+  getUserPassword(): string | null {
+    return localStorage.getItem('userPassword');
   }
   
 

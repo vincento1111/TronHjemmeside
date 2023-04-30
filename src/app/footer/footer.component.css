@@ -1,0 +1,3 @@
+.chat-footer {
+    z-index: 9998; /* ensure the chat is above the footer */
+}
