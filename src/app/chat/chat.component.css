@@ -23,10 +23,12 @@
   margin: 10px;
 }
 
-.chat-input {
-  display: flex;
-  justify-content: space-between;
+.chat-input textarea {
+  width: 90%; /* Adjust this value as needed */
+  height: 40px; /* Adjust this value as needed */
+  padding: 0 10px;
 }
+
 
 .chat-messages {
   margin-bottom: 10px;
