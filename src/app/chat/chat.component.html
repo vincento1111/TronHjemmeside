@@ -1,10 +1,9 @@
 <div class="chat-container" *ngIf="currentUrl !== '/'">
   <div class="chat-content">
     <div class="chat-input">
-      <textarea [(ngModel)]="newMessage" rows="2" placeholder="Type a message..."></textarea>
+      <textarea [(ngModel)]="newMessage" rows="2" placeholder="Type a message..."(keyup.enter)="sendMessage()"></textarea>
       <button (click)="sendMessage()">Send</button>
     </div>
-    
     <div class="chat-messages">
       <div *ngFor="let message of messages; index as i">
         <p><strong>{{message.userId}}</strong>: {{message.content}}</p>
