@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../Services/ChatService';
 import { IUserChat } from '../Interfaces/IUserChat';
 import { AdminPanelService } from '../Services/AdminPanel.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -9,6 +10,7 @@ import { AdminPanelService } from '../Services/AdminPanel.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
+  currentUrl:string;
   
   messages: IUserChat[] = [];
   newMessage = '';
@@ -25,7 +27,12 @@ export class ChatComponent implements OnInit {
   constructor(
     private chatService: ChatService,
     private adminPanelService: AdminPanelService,
-  ) {}
+    private router: Router
+  ) {
+    router.events.subscribe(() => {
+      this.currentUrl = this.router.url;
+    });
+  }
 
   ngOnInit(): void {
     this.getMessages();

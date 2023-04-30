@@ -1,13 +1,13 @@
-<div class="chat-container">
+<div class="chat-container" *ngIf="currentUrl !== '/'">
   <div class="chat-content">
+    <div class="chat-input">
+      <input [(ngModel)]="newMessage" type="text" placeholder="Type a message..." (keyup.enter)="sendMessage()">
+      <button (click)="sendMessage()">Send</button>
+    </div>
     <div class="chat-messages">
-      <div *ngFor="let message of messages">
+      <div *ngFor="let message of messages; index as i">
         <p><strong>{{message.userId}}</strong>: {{message.content}}</p>
       </div>
     </div>
-  </div>
-  <div class="chat-input">
-    <input [(ngModel)]="newMessage" type="text" placeholder="Type a message..." (keyup.enter)="sendMessage()">
-    <button (click)="sendMessage()">Send</button>
   </div>
 </div>
