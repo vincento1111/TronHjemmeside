@@ -11,10 +11,11 @@ import { Router } from '@angular/router';
 })
 export class ChatComponent implements OnInit {
   currentUrl:string;
-  
-  messages: IUserChat[] = [];
+  email: string;
+  messages: IUserChat[];
   newMessage = '';
   private userChatTest: IUserChat = {
+    
     'userId': this.adminPanelService.getUserId2(),
     'content': this.newMessage,
     'User':{
@@ -36,12 +37,16 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMessages();
+    this.email = this.adminPanelService.getUserEmail();
     
   }
 
   getMessages(): void {
     this.chatService.getMessages().subscribe(
-      messages => this.messages = messages
+      messages => {
+        console.log(messages);
+        this.messages = messages;
+      }
     );
   }
 

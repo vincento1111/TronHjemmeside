@@ -12,15 +12,15 @@ import { Inventory } from '../Interfaces/Inventory';
 export class AdminPanelService {
   //Her laver jeg nogen string til det urls i mit api jeg kalder mest, for at spare tid.
 
-  //WORKS FOR LOCAL!!!!
-  // private url = 'https://localhost:44344/api/users/';
-  // private ItemsUrl = 'https://localhost:44344/api/items/';
-  // private InventoryUrl = 'https://localhost:44344/api/Inventory/';
+  // WORKS FOR LOCAL!!!!
+  private url = 'https://localhost:44344/api/users/';
+  private ItemsUrl = 'https://localhost:44344/api/items/';
+  private InventoryUrl = 'https://localhost:44344/api/Inventory/';
 
-  //WORKS FOR AZURE!!!
-  private url = 'https://tronapi.azurewebsites.net/api/users/';
-  private ItemsUrl = 'https://tronapi.azurewebsites.net/api/items/';
-  private InventoryUrl = 'https://tronapi.azurewebsites.net/api/Inventory/';
+  // //WORKS FOR AZURE!!!
+  // private url = 'https://tronapi.azurewebsites.net/api/users/';
+  // private ItemsUrl = 'https://tronapi.azurewebsites.net/api/items/';
+  // private InventoryUrl = 'https://tronapi.azurewebsites.net/api/Inventory/';
 
   userId: number;
   userMail: string;

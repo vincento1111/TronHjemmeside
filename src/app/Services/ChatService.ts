@@ -12,9 +12,9 @@ import { of } from 'rxjs';
 })
 export class ChatService {
   //private url = 'https://tronapi.azurewebsites.net/api/users/';
-  private url = 'https://tronapi.azurewebsites.net/api/Chat'; // Update with your API URL
+  //private url = 'https://tronapi.azurewebsites.net/api/Chat'; // Update with your API URL
 
-  // private Localurl = 'https://localhost:44344/api/Chat';
+  private url = 'https://localhost:44344/api/Chat';
 
 
   adminPanelService: AdminPanelService;

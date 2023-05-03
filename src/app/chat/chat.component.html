@@ -6,7 +6,7 @@
     </div>
     <div class="chat-messages">
       <div *ngFor="let message of messages; index as i">
-        <p><strong>{{message.userId}}</strong>: {{message.content}}</p>
+        <p><strong>{{message.user?.email}}</strong>: {{message.content}}</p>
       </div>
     </div>
   </div>
