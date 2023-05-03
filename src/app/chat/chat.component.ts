@@ -36,8 +36,9 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getMessages();
+    
     this.email = this.adminPanelService.getUserEmail();
+    this.getMessages();
     
   }
 
