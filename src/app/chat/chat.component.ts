@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class ChatComponent implements OnInit {
   currentUrl:string;
   email: string;
+  userId:number;
   messages: IUserChat[];
   newMessage = '';
   private userChatTest: IUserChat = {
@@ -38,6 +39,7 @@ export class ChatComponent implements OnInit {
   ngOnInit(): void {
     
     this.email = this.adminPanelService.getUserEmail();
+    this.userId = this.adminPanelService.getUserId2();
     this.getMessages();
     
   }
@@ -52,7 +54,8 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
-
+    this.userChatTest.userId = this.userId;
+    this.userChatTest.User.email = this.email;
     this.userChatTest.content = this.newMessage;
     this.chatService.postMessage(this.userChatTest).subscribe(chat => {
       console.log("idk")
