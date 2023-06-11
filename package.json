@@ -19,12 +19,13 @@
     "@angular/platform-browser": "^14.1.0",
     "@angular/platform-browser-dynamic": "^14.1.0",
     "@angular/router": "^14.1.0",
+    "@microsoft/signalr": "^7.0.5",
+    "copyfiles": "^2.4.1",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4",
-    "copyfiles": "^2.4.1"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.1.3",
