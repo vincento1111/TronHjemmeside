@@ -3,7 +3,7 @@ import { ChatService } from '../Services/ChatService';
 import { IUserChat } from '../Interfaces/IUserChat';
 import { AdminPanelService } from '../Services/AdminPanel.service';
 import { Router } from '@angular/router';
-import { SignalRService } from '../Services/signal-r.service';
+import { SignalRService } from '../Services/signal-r.service'; // Add this line
 
 @Component({
   selector: 'app-chat',
@@ -11,17 +11,27 @@ import { SignalRService } from '../Services/signal-r.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  currentUrl: string;
+  currentUrl:string;
   email: string;
-  userId: number;
-  messages: IUserChat[] = [];
+  userId:number;
+  messages: IUserChat[];
   newMessage = '';
+  private userChatTest: IUserChat = {
+    
+    'userId': this.adminPanelService.getUserId2(),
+    'content': this.newMessage,
+    'User':{
+      'email': '',
+      'password': ''
+    }
+  }
 
+  
   constructor(
     private chatService: ChatService,
     private adminPanelService: AdminPanelService,
     private router: Router,
-    private signalRService: SignalRService, // Inject the SignalRService
+    private signalRService: SignalRService, // Inject SignalRService
   ) {
     router.events.subscribe(() => {
       this.currentUrl = this.router.url;
@@ -34,25 +44,11 @@ export class ChatComponent implements OnInit {
         this.userId = user.userId;
         this.email = user.email;
       }
+      this.getMessages();
     });
-
-    // Start the SignalR connection and subscribe to incoming messages
-    this.signalRService.startConnection().then(() => {
-      this.signalRService.addTransferChatDataListener((user, message) => {
-        this.messages.push({
-          'userId': user,
-          'content': message,
-          'User': {
-            'email': user,
-            'password': ''
-          }
-        });
-      });
-    });
-
-    // Get the initial set of messages
-    this.getMessages();
   }
+  
+  
 
   getMessages(): void {
     this.chatService.getMessages().subscribe(
@@ -64,10 +60,21 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
-    if (this.newMessage.trim() !== '') {
-      // Send the message via SignalR and clear the input
-      this.signalRService.sendMessage(this.userId.toString(), this.newMessage);
-      this.newMessage = '';
-    }
+    this.userChatTest.userId = this.adminPanelService.getUserId2();
+    this.userChatTest.content = this.newMessage;
+    this.chatService.postMessage(this.userChatTest).subscribe(chat => {
+      console.log("idk");
+      this.messages.push(chat);
+      // Refetch user and messages
+      this.userId = this.adminPanelService.getUserId2();
+      this.email = this.adminPanelService.getUserEmail();
+      this.getMessages();
+    });
+    this.newMessage = '';
   }
+  
+  
+
+  
+  
 }
