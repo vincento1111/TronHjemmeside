@@ -37,12 +37,16 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    this.email = this.adminPanelService.getUserEmail();
-    this.userId = this.adminPanelService.getUserId2();
-    this.getMessages();
-    
+    this.adminPanelService.currentUser.subscribe(user => {
+      if (user) {
+        this.userId = user.userId;
+        this.email = user.email;
+      }
+      this.getMessages();
+    });
   }
+  
+  
 
   getMessages(): void {
     this.chatService.getMessages().subscribe(
@@ -54,15 +58,19 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
-    this.userChatTest.userId = this.userId;
-    this.userChatTest.User.email = this.email;
+    this.userChatTest.userId = this.adminPanelService.getUserId2();
     this.userChatTest.content = this.newMessage;
     this.chatService.postMessage(this.userChatTest).subscribe(chat => {
-      console.log("idk")
+      console.log("idk");
       this.messages.push(chat);
+      // Refetch user and messages
+      this.userId = this.adminPanelService.getUserId2();
+      this.email = this.adminPanelService.getUserEmail();
+      this.getMessages();
     });
     this.newMessage = '';
   }
+  
   
 
   

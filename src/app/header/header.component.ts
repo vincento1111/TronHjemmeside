@@ -30,4 +30,10 @@ export class HeaderComponent implements OnInit {
     this.email = this.adminPanelService.userMail; // Replace this with the actual role string from your application
     this.isAdmin = this.email === 'Admin';
   }
+
+  logout() {
+    this.adminPanelService.logout();
+    this.router.navigate(['/']);
+  }
+  
 }

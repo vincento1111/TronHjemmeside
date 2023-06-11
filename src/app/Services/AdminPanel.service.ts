@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import { IUser } from '../Interfaces/IUser';
 import { Items } from '../Interfaces/Items';
 import { Inventory } from '../Interfaces/Inventory';
+import { BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +24,7 @@ export class AdminPanelService {
   private url = 'https://tronapi.azurewebsites.net/api/users/';
   private ItemsUrl = 'https://tronapi.azurewebsites.net/api/items/';
   private InventoryUrl = 'https://tronapi.azurewebsites.net/api/Inventory/';
+  private currentUserSubject = new BehaviorSubject<IUser>(null);
 
   userId: number;
   userMail: string;
@@ -37,11 +41,22 @@ export class AdminPanelService {
   //Metoden laver et api kald til min user kontroller som kaldes på "login" og retunere et json object som matcher email og password som bliver sendt.
   Login(email: string, password: string): Observable<IUser> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    //Jeg sætter ofte beskeder i min consol for at se om jeg før de rigtige resultater.
     console.warn(this.url + "login?email=" + email + "&password=" + password );
     this.userMail = email;
 
+    // After getting the user data, next it into currentUserSubject
     return this.http.get<IUser>(this.url + "login?email=" + email + "&password=" + password, httpOptions)
+      .pipe(
+        tap(user => this.currentUserSubject.next(user))
+      );
+  }
+  logout(): void {
+    // Clear user data from local storage
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('userPassword');
+    // Reset currentUserSubject
+    this.currentUserSubject.next(null);
   }
   //her gemmer jeg Id i min service så jeg kan kalde på current users Id
   saveId(id: number){
@@ -116,6 +131,10 @@ export class AdminPanelService {
 
   getUserPassword(): string | null {
     return localStorage.getItem('userPassword');
+  }
+  //getter for the whole user as an object
+  get currentUser(): Observable<IUser> {
+    return this.currentUserSubject.asObservable();
   }
   
 
