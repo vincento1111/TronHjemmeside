@@ -20,10 +20,11 @@ export class AdminPanelService {
   // private ItemsUrl = 'https://localhost:44344/api/items/';
   // private InventoryUrl = 'https://localhost:44344/api/Inventory/';
 
-  // //WORKS FOR AZURE!!!
+  //WORKS FOR AZURE!!!
   private url = 'https://tronapi.azurewebsites.net/api/users/';
   private ItemsUrl = 'https://tronapi.azurewebsites.net/api/items/';
   private InventoryUrl = 'https://tronapi.azurewebsites.net/api/Inventory/';
+
   private currentUserSubject = new BehaviorSubject<IUser>(null);
 
   userId: number;

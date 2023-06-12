@@ -3,6 +3,7 @@ import { IUserChat } from '../Interfaces/IUserChat';
 import { AdminPanelService } from '../Services/AdminPanel.service';
 import { Router } from '@angular/router';
 import { SignalRService } from '../Services/Signal-r.service'; 
+import { ChatService } from '../Services/ChatService';
 
 @Component({
   selector: 'app-chat',
@@ -17,6 +18,7 @@ export class ChatComponent implements OnInit {
   newMessage = '';
 
   constructor(
+    private chatService: ChatService,
     private adminPanelService: AdminPanelService,
     private router: Router,
     private signalRService: SignalRService, 
@@ -27,6 +29,8 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getMessages();
+    
     this.adminPanelService.currentUser.subscribe(user => {
       if (user) {
         this.userId = user.userId;
@@ -42,11 +46,32 @@ export class ChatComponent implements OnInit {
       this.messages.push(message);
     });
   }
-  
-  
-  sendMessage(): void {
-    this.signalRService.sendMessage(this.userId, this.newMessage).then(() => {
-      this.newMessage = '';
-    });
+
+  getMessages(): void {
+    this.chatService.getMessages().subscribe(
+      messages => {
+        console.log(messages);
+        this.messages = messages;
+      }
+    );
   }
+  
+  
+  sendMessage() {
+    const chatData: IUserChat = {
+      userId: this.userId, // From currently logged-in user
+      User: {
+        email: this.email, // From currently logged-in user
+        password: '' // Usually, password should not be sent like this. Please adjust it based on your logic
+      },
+      content: this.newMessage,
+    };
+  
+    this.signalRService.sendMessage(chatData).then(() => {
+      this.newMessage = '';
+    }).catch(err => console.error(err));
+  }
+  
+  
+  
 }

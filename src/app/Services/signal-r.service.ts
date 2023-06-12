@@ -14,7 +14,7 @@ export class SignalRService {
 
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl(this.localS)
+      .withUrl(this.azureS)
       .build();
 
     this.hubConnection
@@ -29,20 +29,17 @@ export class SignalRService {
     });
   }
 
-  public sendMessage = async (user: number, message: string) => {
-    const chatData: IUserChat = {
-      userId: user,
-      content: message,
-      User: {
-        email: '',
-        password: ''
-      }
-    };
-
+  public sendMessage = async (chatData: IUserChat) => {
     try {
       await this.hubConnection.invoke('SendMessage', chatData);
     } catch (err) {
       console.error(err);
     }
   }
+  
+
+  
+  
+
+  
 }

@@ -11,7 +11,7 @@ export class ProfileService {
   //WORKS LOCAL!!!
   // private url = 'https://localhost:44344/api/profile/';
   
-  //WORKS FOR AZURE!!!
+  // //WORKS FOR AZURE!!!
   private url = 'https://tronapi.azurewebsites.net/api/profile/';
 
   userMail: string;
