@@ -1,28 +1,48 @@
 import { Injectable } from '@angular/core';
-import * as signalR from "@microsoft/signalr";  
+import * as signalR from '@microsoft/signalr';
+import { IUserChat } from '../Interfaces/IUserChat';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignalRService {
   private hubConnection: signalR.HubConnection;
+  private localS = "https://localhost:44344/chathub"
+  private azureS = "https://tronapi.azurewebsites.net/chathub"
+  messageReceived = new Subject<IUserChat>();
 
-  public startConnection() : Promise<void> {
+  public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
-                            .withUrl('https://tronapi.azurewebsites.net/chathub')
-                            .build();
+      .withUrl(this.localS)
+      .build();
 
-    return this.hubConnection
+    this.hubConnection
       .start()
       .then(() => console.log('Connection started'))
-      .catch(err => console.log('Error while starting connection: ' + err))
+      .catch(err => console.log('Error while starting connection: ' + err));
   }
 
-  public addTransferChatDataListener(callback) {
-    this.hubConnection.on('ReceiveMessage', callback);
+  public addMessageDataListener = () => {
+    this.hubConnection.on('ReceiveMessage', (data: IUserChat) => {
+      this.messageReceived.next(data);
+    });
   }
 
-  public async sendMessage(user: string, message: string) {
-    return this.hubConnection.send('SendMessage', user, message);
+  public sendMessage = async (user: number, message: string) => {
+    const chatData: IUserChat = {
+      userId: user,
+      content: message,
+      User: {
+        email: '',
+        password: ''
+      }
+    };
+
+    try {
+      await this.hubConnection.invoke('SendMessage', chatData);
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
