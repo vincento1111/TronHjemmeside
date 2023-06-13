@@ -13,6 +13,7 @@ export class ProfilePageComponent implements OnInit {
   userId: any;
 
   profileDes: string;
+  profileId: any;
   constructor(
     private userStatsService: UserStatsService,
     private adminPanelService: AdminPanelService,
@@ -27,10 +28,11 @@ export class ProfilePageComponent implements OnInit {
   getProfile(profileId){
     this.profileService.getProfile(profileId).subscribe(profile =>{
       this.profileDes = profile.profileDes;
+      this.profileId =profile.profileId;
     })
   }
   updateProfile(profileDes) {
-    this.profileService.getProfile(this.userId).subscribe(profile =>{
+    this.profileService.getProfile(this.profileId).subscribe(profile =>{
       profile.profileDes = profileDes
       this.profileService.updateProfile(profile).subscribe(user =>{
       });

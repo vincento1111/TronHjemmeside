@@ -26,9 +26,9 @@ export class UserStatsService {
   
 
   // UserStatsService
-  incrementStat(userId: number, statName: string): Observable<IUserStats> {
-    console.warn(`${this.url}IncrementStat?statId=${userId}&statName=${statName}`);
-    return this.http.put<IUserStats>(`${this.url}IncrementStat?statId=${userId}&statName=${statName}`, {});
+  incrementStat(statId: number, statName: string): Observable<IUserStats> {
+    console.warn(`${this.url}IncrementStat?statId=${statId}&statName=${statName}`);
+    return this.http.put<IUserStats>(`${this.url}IncrementStat?statId=${statId}&statName=${statName}`, {});
   }
 
   
