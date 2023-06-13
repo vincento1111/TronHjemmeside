@@ -12,6 +12,7 @@ export class SignalRService {
   private azureS = "https://tronapi.azurewebsites.net/chathub"
   messageReceived = new Subject<IUserChat>();
 
+  //idk
   public startConnection = () => {
     this.hubConnection = new signalR.HubConnectionBuilder()
       .withUrl(this.azureS)
