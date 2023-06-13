@@ -81,12 +81,6 @@ export class AdminPanelService {
     return this.http.delete<IUser>(this.url + userId, httpOptions);
   } 
 
-  getUserId(email: string): Observable<IUser>{
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    console.warn("Http get request to:"+ this.url + "id?email=" + email, httpOptions);
-    return this.http.get<IUser>(this.url + "id?email=" + email, httpOptions);
-  }
-
   createItem(item: Items): Observable<Items> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     console.warn(this.ItemsUrl, item);
@@ -137,6 +131,7 @@ export class AdminPanelService {
   get currentUser(): Observable<IUser> {
     return this.currentUserSubject.asObservable();
   }
+  
   
 
 

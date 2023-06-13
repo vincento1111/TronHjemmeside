@@ -44,7 +44,7 @@ export class HomepageComponent implements OnInit {
   }
 //Her henter jeg brugerens stats som tilhøre deres ID og sætter deres stats inds i variabler som bliver brugt i min HTML
   getUserStats(userId){
-    this.userStatsService.getUserStat(userId).subscribe(user =>{
+    this.userStatsService.getStatsByUserId(userId).subscribe(user =>{
       console.warn(user);
       this.strength = user.strength;
       this.speed = user.speed;
