@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class SignalRService {
-  private hubConnection: signalR.HubConnection;
+  private hubConnection: SignalR.HubConnection;
   private localS = "https://localhost:44344/chathub"
   private azureS = "https://tronapi.azurewebsites.net/chathub"
   messageReceived = new Subject<IUserChat>();
