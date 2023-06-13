@@ -12,6 +12,7 @@ import { ChatService } from '../Services/ChatService';
 })
 export class ChatComponent implements OnInit 
 {
+  //empty commit
   currentUrl:string;
   email: string;
   userId:number;
