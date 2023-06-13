@@ -10,7 +10,8 @@ import { ChatService } from '../Services/ChatService';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit 
+{
   currentUrl:string;
   email: string;
   userId:number;

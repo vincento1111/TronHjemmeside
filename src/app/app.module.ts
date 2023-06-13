@@ -30,7 +30,7 @@ import { ChatComponent } from './chat/chat.component';
     TrainingPageComponent,
     ItemsComponent,
     ShopComponent,
-    ChatComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
