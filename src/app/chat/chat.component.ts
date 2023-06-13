@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IUserChat } from '../Interfaces/IUserChat';
 import { AdminPanelService } from '../Services/AdminPanel.service';
 import { Router } from '@angular/router';
-import { SignalRService } from '../Services/Signal-r.service';
+import { SignalRService } from '../Services/Signalr.service';
 import { ChatService } from '../Services/ChatService';
 
 @Component({
