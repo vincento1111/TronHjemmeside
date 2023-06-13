@@ -24,11 +24,11 @@ export class ChatService {
     return this.http.get<IUserChat[]>(this.url);
   }
 
-  postMessage(chat: IUserChat): Observable<IUserChat>{
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    console.warn("Chat.service "+this.url, chat, httpOptions);
-    return this.http.post<IUserChat>(this.url, chat, httpOptions);
-  }
+  // postMessage(chat: IUserChat): Observable<IUserChat>{
+  //   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+  //   console.warn("Chat.service "+this.url, chat, httpOptions);
+  //   return this.http.post<IUserChat>(this.url, chat, httpOptions);
+  // }
 
 }
 
