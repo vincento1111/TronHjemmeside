@@ -31,7 +31,7 @@ import { SignalRService } from './Services/Signal-r.service';
     TrainingPageComponent,
     ItemsComponent,
     ShopComponent,
-    ChatComponent
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

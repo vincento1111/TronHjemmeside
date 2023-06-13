@@ -12,7 +12,7 @@ import { ChatService } from '../Services/ChatService';
 })
 export class ChatComponent implements OnInit 
 {
-  //empty commit
+  //empty
   currentUrl:string;
   email: string;
   userId:number;
@@ -58,7 +58,6 @@ export class ChatComponent implements OnInit
     );
   }
   
-  
   sendMessage() {
     const chatData: IUserChat = {
       userId: this.userId, // From currently logged-in user
@@ -73,7 +72,4 @@ export class ChatComponent implements OnInit
       this.newMessage = '';
     }).catch(err => console.error(err));
   }
-  
-  
-  
 }

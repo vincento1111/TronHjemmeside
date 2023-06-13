@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as signalR from '@microsoft/signalr';
+import * as SignalR from '@microsoft/signalr';
 import { IUserChat } from '../Interfaces/IUserChat';
 import { Subject } from 'rxjs';
 
@@ -14,7 +14,7 @@ export class SignalRService {
 
   //idk
   public startConnection = () => {
-    this.hubConnection = new signalR.HubConnectionBuilder()
+    this.hubConnection = new SignalR.HubConnectionBuilder()
       .withUrl(this.azureS)
       .build();
 
