@@ -25,10 +25,11 @@ export class ProfilePageComponent implements OnInit {
     this.getProfile(this.userId);
   }
 
-  getProfile(profileId){
-    this.profileService.getProfile(profileId).subscribe(profile =>{
-      this.profileDes = profile.profileDes;
-      this.profileId =profile.profileId;
+  getProfile(userId){
+    this.profileService.getProfile(userId).subscribe(user =>{
+      console.warn(user);
+      this.profileDes = user.profileDes;
+      this.profileId =user.profileId;
     })
   }
   updateProfile(profileDes) {
