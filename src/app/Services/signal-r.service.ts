@@ -25,6 +25,7 @@ export class SignalrService {
   }
 
   public addMessageDataListener = () => {
+    console.log("console log on chat signalr")
     this.hubConnection.on('ReceiveMessage', (data: IUserChat) => {
       this.messageReceived.next(data);
     });
