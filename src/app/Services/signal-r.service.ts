@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class SignalrService {
+export class Signalrservice {
   private hubConnection: Signalr.HubConnection;
   private localS = "https://localhost:44344/chathub"
   private azureS = "https://tronapi.azurewebsites.net/chathub"

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IUserChat } from '../Interfaces/IUserChat';
 import { AdminPanelService } from '../Services/AdminPanel.service';
 import { Router } from '@angular/router';
-import { SignalrService } from '../Services/Signal-r.service';
+import { Signalrservice } from '../Services/Signal-r.service';
 import { ChatService } from '../Services/ChatService';
 
 @Component({
@@ -23,7 +23,7 @@ export class ChatComponent implements OnInit
     private chatService: ChatService,
     private adminPanelService: AdminPanelService,
     private router: Router,
-    private signalrService: SignalrService, 
+    private signalrservice: Signalrservice, 
   ) {
     router.events.subscribe(() => {
       this.currentUrl = this.router.url;
@@ -40,11 +40,11 @@ export class ChatComponent implements OnInit
       }
     });
   
-    this.signalrService.startConnection(); // Start SignalR connection
-    this.signalrService.addMessageDataListener(); // Add event handler for receiving messages
+    this.signalrservice.startConnection(); // Start SignalR connection
+    this.signalrservice.addMessageDataListener(); // Add event handler for receiving messages
   
     // Subscribe to messages
-    this.signalrService.messageReceived.subscribe((message: IUserChat) => {
+    this.signalrservice.messageReceived.subscribe((message: IUserChat) => {
       this.messages.push(message);
     });
   }
@@ -68,7 +68,7 @@ export class ChatComponent implements OnInit
       content: this.newMessage,
     };
   
-    this.signalrService.sendMessage(chatData).then(() => {
+    this.signalrservice.sendMessage(chatData).then(() => {
       this.newMessage = '';
     }).catch(err => console.error(err));
   }
