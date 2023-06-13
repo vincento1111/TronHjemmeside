@@ -17,6 +17,7 @@ import { TrainingPageComponent } from './training-page/training-page.component';
 import { ItemsComponent } from './items/items.component';
 import { ShopComponent } from './shop/shop.component';
 import { ChatComponent } from './chat/chat.component';
+import { SignalRService } from './Services/Signal-r.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { ChatComponent } from './chat/chat.component';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [SignalRService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
