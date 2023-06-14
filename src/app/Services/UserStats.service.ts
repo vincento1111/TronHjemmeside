@@ -10,7 +10,7 @@ import { IUserStats } from '../Interfaces/IUserStats';
 export class UserStatsService {
   // WORKS FOR LOCAL!!!
   // private url = 'https://localhost:44344/api/UserStats/';
-
+  // private userUrl = 'https://localhost:44344/api/users/';
   // //WORKS FOR AZURE
   private url = 'https://tronapi.azurewebsites.net/api/UserStats/'
   private userUrl = 'https://tronapi.azurewebsites.net/api/users/'

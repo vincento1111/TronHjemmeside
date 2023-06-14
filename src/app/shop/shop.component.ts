@@ -14,6 +14,7 @@ export class ShopComponent implements OnInit {
   userId: any;
   Inventories: Inventory[];
   money:number;
+  
 
   constructor(
     private adminPanelService: AdminPanelService,
@@ -34,15 +35,20 @@ export class ShopComponent implements OnInit {
   }
   //Her opretter jeg en inventory/item og tilknytter den til brugeren som er logged på.
   buyItem(ItemId: any){
-    var Inventory = { userid:this.userId, itemId:ItemId }
+    const Inventory: Inventory = {
+      userId: this.userId,
+      itemId: ItemId,
+    };
+    console.log(Inventory)
     this.adminPanelService.buyItem(Inventory).subscribe(userId => {
       this.getUserStats(this.userId);
     });
-    
-  }
+}
+
+
 
   getUserStats(userId){
-    this.userStatsService.getUserStat(userId).subscribe(user =>{
+    this.userStatsService.getStatsByUserId(userId).subscribe(user =>{
       console.warn("my user is",user.money);
       this.money = user.money;
     });
