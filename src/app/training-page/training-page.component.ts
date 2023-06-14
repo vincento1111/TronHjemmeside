@@ -23,7 +23,7 @@ export class TrainingPageComponent implements OnInit {
   dexterity:number;
 
   energy:number;
-
+  statId:number;
   userId:any;
   email: string;
 
@@ -38,18 +38,19 @@ export class TrainingPageComponent implements OnInit {
   }
 
   getUserStats(userId){
-    this.userStatsService.getUserStat(userId).subscribe(user =>{
-      console.warn("my user is",user);
+    this.userStatsService.getStatsByUserId(userId).subscribe(user =>{
+      console.warn(user);
       this.strength = user.strength;
       this.speed = user.speed;
       this.defense = user.defense;
       this.dexterity = user.dexterity;
+      this.statId = user.statId;
       this.energy = user.energy;
     });
   }
 
 updateUserStats(statName: string) {
-  this.userStatsService.incrementStat(this.userId, statName).subscribe(user => {
+  this.userStatsService.incrementStat(this.statId, statName).subscribe(user => {
     this.strength = user.strength;
     this.speed = user.speed;
     this.defense = user.defense;

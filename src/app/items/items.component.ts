@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Items } from '../Interfaces/Items';
 import { AdminPanelService } from '../Services/AdminPanel.service';
+import { UserStatsService } from '../Services/UserStats.service';
 
 @Component({
   selector: 'app-items',
@@ -10,17 +11,27 @@ import { AdminPanelService } from '../Services/AdminPanel.service';
 export class ItemsComponent implements OnInit {
 
   userId:any;
+  StatId:any;
   test:any;
   items: Items[] = []
 
-  constructor(private adminPanelService: AdminPanelService) { }
+  constructor(private adminPanelService: AdminPanelService,
+    private userStatsService: UserStatsService) { }
   
 
   ngOnInit(): void {
     //Her gør jeg userId i lig med userId i min servive metode.
     //this.email = this.adminPanelService.getUserEmail();
     this.userId = this.adminPanelService.getUserId2();
+    this.getUserStatId(this.userId);
     this.getInventory();
+  }
+
+  getUserStatId(userId){
+    this.userStatsService.getStatsByUserId(userId).subscribe(user =>{
+      console.warn("current user"+user);
+      this.StatId= user.statId;
+    });
   }
 
   //Her henter jeg alle inventories som har brugeres ID, og putter dem i en liste. 

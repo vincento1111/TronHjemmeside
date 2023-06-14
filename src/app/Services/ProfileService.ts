@@ -13,6 +13,7 @@ export class ProfileService {
   
   // //WORKS FOR AZURE!!!
   private url = 'https://tronapi.azurewebsites.net/api/profile/';
+  private profileUrl = 'https://tronapi.azurewebsites.net/api/profile/';
 
   userMail: string;
   constructor(private http: HttpClient) { }
@@ -22,10 +23,15 @@ export class ProfileService {
     console.warn("Http get request to:"+ this.url + StatId, httpOptions);
     return this.http.get<IProfile>(this.url+ StatId, httpOptions);
   }
-  updateProfile(user: IProfile):Observable<IProfile>{
+  updateProfile(profile: IProfile): Observable<IProfile> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    console.warn("this is my put request" + this.url , user, httpOptions)
-    return this.http.put<IProfile>(this.url, user, httpOptions);
+    console.warn("this is my put request" + this.url , profile, httpOptions);
+    return this.http.put<IProfile>(this.url, profile, httpOptions);
+  }
+  
+  getProfileByUserId(userId: number){
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    return this.http.get<IProfile>(this.profileUrl + userId + "/userProfile", httpOptions);
   }
   
 }

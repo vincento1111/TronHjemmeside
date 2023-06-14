@@ -37,10 +37,6 @@ export class UserStatsService {
     return this.http.get<IUserStats>(this.userUrl + userId + "/userStats", httpOptions);
   }
 
-  
-  
-  
-
   // updateUserStat(user: IUserStats):Observable<IUserStats>{
   //   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
   //   console.warn("this is my put request" + this.url , user, httpOptions)

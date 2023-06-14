@@ -102,7 +102,6 @@ export class AdminPanelService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     console.warn(this.InventoryUrl + "UserInventory?id=" + userId);
     return this.http.get<Inventory>(this.InventoryUrl + "UserInventory?id=" + userId, httpOptions);
-
   }
 
   saveUserEmail(email: string): void {
@@ -113,6 +112,8 @@ export class AdminPanelService {
     const userId = localStorage.getItem('userId');
     return userId ? parseInt(userId) : null;
   }
+
+
   // Save user's ID in localStorage
   saveUserId(userId: number): void {
     localStorage.setItem('userId', userId.toString());
