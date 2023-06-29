@@ -47,10 +47,6 @@ export class ProfilePageComponent implements OnInit {
     const profile: IProfile = {
       profileId: this.profileId,
       userId: this.userId , // From currently logged-in user
-      User: {
-        email: this.email, // From currently logged-in user
-        password: '' // Usually, password should not be sent like this. Please adjust it based on your logic
-      },
       profileDes: profileDes,
     };
       this.profileService.updateProfile(profile).subscribe(user =>{

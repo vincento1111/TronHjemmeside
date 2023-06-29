@@ -33,12 +33,8 @@ export class ChatComponent implements OnInit
   ngOnInit(): void {
     this.getMessages();
     
-    this.adminPanelService.currentUser.subscribe(user => {
-      if (user) {
-        this.userId = user.userId;
-        this.email = user.email;
-      }
-    });
+    this.userId = this.adminPanelService.getUserId2();
+
   
     this.signalRService.startConnection(); // Start SignalR connection
     this.signalRService.addMessageDataListener(); // Add event handler for receiving messages
@@ -61,10 +57,6 @@ export class ChatComponent implements OnInit
   sendMessage() {
     const chatData: IUserChat = {
       userId: this.userId, // From currently logged-in user
-      User: {
-        email: this.email, // From currently logged-in user
-        password: '' // Usually, password should not be sent like this. Please adjust it based on your logic
-      },
       content: this.newMessage,
     };
   
