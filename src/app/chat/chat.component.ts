@@ -12,6 +12,7 @@ import { ChatService } from '../Services/ChatService';
 })
 export class ChatComponent implements OnInit 
 {
+  showChatContent = true;
   //empty
   currentUrl:string;
   email: string;

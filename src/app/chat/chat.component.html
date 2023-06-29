@@ -1,5 +1,10 @@
-<div class="chat-container" *ngIf="currentUrl !== '/'">
-  <div class="chat-content">
+<div [ngClass]="{'chat-container': true, 'minimized': !showChatContent}" *ngIf="currentUrl !== '/'">
+  <div class="chat-header">
+    <button (click)="showChatContent = !showChatContent">
+      {{showChatContent ? 'Minimize Chat' : 'Open Chat'}}
+    </button>
+  </div>
+  <div class="chat-content" *ngIf="showChatContent">
     <div class="chat-input">
       <textarea [(ngModel)]="newMessage" rows="2" placeholder="Type a message..."(keyup.enter)="sendMessage()"></textarea>
       <button (click)="sendMessage()">Send</button>

@@ -12,6 +12,29 @@
   flex-direction: column; /* This will stack content and input vertically */
 }
 
+.minimized {
+  border: none;
+  width: auto;
+  height: auto;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  background-color: #34495e;
+}
+
+.toggle-button {
+  background-color: #34495e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 0 10px;
+  border-radius: 4px;
+}
+
 .chat-content {
   flex-grow: 1; /* This will make the chat content take up all available space */
   display: flex;
@@ -28,7 +51,6 @@
   height: 40px; /* Adjust this value as needed */
   padding: 0 10px;
 }
-
 
 .chat-messages {
   margin-bottom: 10px;
