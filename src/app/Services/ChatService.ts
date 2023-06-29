@@ -5,7 +5,7 @@ import { IUserChat } from '../Interfaces/IUserChat';
 import { AdminPanelService } from './AdminPanel.service';
 import { catchError, tap, } from 'rxjs/operators';
 import { of } from 'rxjs';
-
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,11 @@ export class ChatService {
     this.adminPanelService = adminPanelService;
   }
   getMessages(): Observable<IUserChat[]> {
-    return this.http.get<IUserChat[]>(this.url);
+    return this.http.get<IUserChat[]>(this.url).pipe(
+      map((messages: IUserChat[]) => 
+        messages.sort((a, b) => a.messageId - b.messageId)
+      )
+    );
   }
 
   // postMessage(chat: IUserChat): Observable<IUserChat>{

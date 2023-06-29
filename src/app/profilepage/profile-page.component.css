@@ -1,0 +1,39 @@
+.profile-container {
+    background-color: #202837;
+    padding: 20px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.profile-container p {
+    color: #fff;
+}
+
+.profile-container textarea {
+    width: 40%; /* Adjust to your liking */
+    height: 160px; /* Adjust to your liking */
+    background-color: #28364a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+
+.profile-container button {
+    background-color: #5a616c;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px 2px;
+    cursor: pointer;
+}
+
+.profile-container button:hover {
+    background-color: #28364a;
+}

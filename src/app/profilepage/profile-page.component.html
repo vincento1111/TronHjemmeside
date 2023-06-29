@@ -1,11 +1,10 @@
-<p>Porfile Page</p>
-<p> profile ID:</p>
-<form >
-    <p><label>Profile Description:</label></p>
-    <textarea #myArea id="MyTextArea" name="Description" rows="4" cols="50" >{{profileDes}}</textarea>
-    
-    <br>
-    <button type="submit" (click)="updateProfile(myArea.value)">Update</button>
-</form> 
-
-  
+<div class="profile-container">
+    <p>Profile Page</p>
+    <p>Profile ID:</p>
+    <form>
+        <p><label>Profile Description:</label></p>
+        <textarea #myArea id="MyTextArea" name="Description" rows="4" cols="50" >{{profileDes}}</textarea>
+        <br>
+        <button type="button" (click)="updateProfile(myArea.value)">Update</button>
+    </form>
+</div>

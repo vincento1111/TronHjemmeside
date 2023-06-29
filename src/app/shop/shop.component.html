@@ -1,8 +1,10 @@
-<h2>List of Items</h2>
-<li>Your money:{{money}}</li>
-<ul class="items">
-  <li *ngFor="let item of items">
-    <span class="badge">ID: {{item.itemId}}</span> Item Name: {{item.itemName}} Value:{{item.value}}
-    <button class="btn btn-xs btn-danger" (click)="buyItem(item.itemId)">Buy</button>
-  </li>
-</ul>
+<div class="shop-container">
+  <h2>List of Items</h2>
+  <li>Your money:{{money}}</li>
+  <ul class="items">
+      <li *ngFor="let item of items">
+          <span class="badge">ID: {{item.itemId}}</span> Item Name: {{item.itemName}} Value:{{item.value}}
+          <button class="btn btn-xs btn-danger" (click)="buyItem(item.itemId)">Buy</button>
+      </li>
+  </ul>
+</div>

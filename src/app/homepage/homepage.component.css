@@ -1,0 +1,24 @@
+ul {
+    list-style-type: none; /* removes bullet points */
+    padding: 0;
+    margin: 0;
+    width: 200px; /* adjust as needed */
+    border: 1px solid #5a616c; /* border around the ul */
+    border-radius: 5px; /* rounded corners */
+    background-color: #202837; /* dark blue background */
+}
+
+li {
+    padding: 10px;
+    border-bottom: 1px solid #5a616c; /* border between li items */
+    color: #fff; /* white text color */
+    font-size: 14px; /* adjust as needed */
+}
+
+li:last-child {
+    border-bottom: none; /* removes border for last item */
+}
+
+li:hover {
+    background-color: #28364a; /* slightly lighter blue when mouse hovers over li */
+}
