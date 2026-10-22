@@ -40,3 +40,9 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Local runtime, downloads and test artifacts
+/.local/
+/.tools/
+/test-results/
+/playwright-report/

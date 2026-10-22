@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Progression planner · Tron City</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0f191b;--panel:#192629;--line:#304347;--text:#e9f1ef;--muted:#acc0c3;--mint:#9fe4ce;--gold:#d6bc80}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,sans-serif}main{max-width:1160px;margin:auto;padding:32px 28px 64px}a{color:var(--mint)}header{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:28px}.eyebrow{font-size:12px;letter-spacing:.16em;color:var(--mint)}h1{font-size:clamp(30px,5vw,46px);line-height:1.15;margin:14px 0}h2{font-size:23px;margin:0 0 12px}p{color:var(--muted);max-width:850px}header a{display:inline-block;margin-bottom:20px}.controls{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;background:var(--panel);padding:24px;border:1px solid var(--line);border-radius:12px}label{display:grid;gap:9px;font-size:14px}input,select{font:inherit;color:var(--text);background:var(--bg);border:1px solid #546a6e;padding:11px;width:100%;border-radius:6px}input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--mint);outline-offset:3px}.summary{display:flex;flex-wrap:wrap;gap:20px 40px;margin:28px 0 36px}.summary div{min-width:180px}.summary strong{display:block;font-size:29px;font-variant-numeric:tabular-nums}.summary span,.small{font-size:13px;color:var(--muted)}.columns{display:grid;grid-template-columns:1fr 1fr;gap:32px}.section{margin-bottom:36px}.chart{height:250px;width:100%;display:block}.chart text{fill:var(--muted);font:12px system-ui,sans-serif}.chart .grid{stroke:var(--line);stroke-width:1}.chart .curve{fill:none;stroke:var(--mint);stroke-width:3}.chart .dot{fill:var(--mint)}.chart .statcurve{stroke:var(--gold)}.chart .statdot{fill:var(--gold)}table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}th,td{text-align:right;border-bottom:1px solid var(--line);padding:11px 6px}th:first-child,td:first-child{text-align:left}th{color:var(--muted);font-weight:500}details{border-top:1px solid var(--line);padding:20px 0;margin-top:24px}summary{cursor:pointer;color:var(--mint)}code{color:var(--text);font-size:14px;overflow-wrap:anywhere}.formula{background:var(--panel);padding:18px;border-radius:8px}.error{color:#ffb5ac}ul{color:var(--muted);padding-left:22px}li{margin:9px 0}
+    @media(max-width:800px){.controls{grid-template-columns:1fr 1fr}.columns{grid-template-columns:1fr}.summary{gap:18px}.summary div{flex:1}.summary strong{font-size:25px}}
+    @media(max-width:450px){main{padding:20px 16px 40px}.controls{grid-template-columns:1fr;padding:18px}.summary div{min-width:135px}th,td{padding:10px 4px;font-size:13px}}
+  </style>
+</head>
+<body><main>
+  <header><a href="/training">← Back to training</a><div class="eyebrow">TRON CITY / PROGRESSION V2</div><h1>Small sessions. A long journey.</h1><p>Explore how often you play, how you divide training, and what equipment changes. These are planning estimates from a new character, using average training rolls. Changing this planner does not change your save or the game rules.</p></header>
+  <form class="controls" id="controls">
+    <label>Full energy bars spent each day<select id="visits"><option value="1">Once daily · 72 energy</option><option value="2">Twice daily · 144 energy</option></select></label>
+    <label>Extra energy from food/drinks daily<input id="extra" type="number" min="0" max="24" step="1" value="0"></label>
+    <label>Equipment training bonus (%)<input id="gear" type="number" min="0" max="10" step="0.0001" value="0"></label>
+    <label>Energy assigned to this stat<select id="allocation"><option value="1">100% · focus one stat</option><option value="0.5">50% · train two evenly</option><option value="0.25">25% · train all four evenly</option></select></label>
+  </form>
+  <p class="error" id="error" role="alert" hidden></p>
+  <div class="summary" aria-live="polite" aria-atomic="true"><div><span>Training energy per day</span><strong id="daily">72</strong></div><div><span>Character level 5</span><strong id="early">—</strong></div><div><span>Level 90 → 100 alone</span><strong id="late">—</strong></div><div><span>Chosen stat reaches 100</span><strong id="stat100">—</strong></div></div>
+  <div class="columns">
+    <section class="section"><h2>Character level</h2><p class="small">Every energy spent gives 10 XP. Equipment and training luck affect stats, not character XP.</p><svg id="level-chart" class="chart" role="img" aria-label="Character level against years of daily play"></svg><table><thead><tr><th>Level</th><th>Total XP</th><th>Daily budgets</th></tr></thead><tbody id="levels"></tbody></table></section>
+    <section class="section"><h2>Individual stat</h2><p class="small">Training all four stats divides your energy. Practice improves efficiency for every stat.</p><svg id="stat-chart" class="chart" role="img" aria-label="Selected stat against years of daily play"></svg><table><thead><tr><th>Stat</th><th>Mean gain / energy</th><th>Daily budgets</th></tr></thead><tbody id="stats"></tbody></table></section>
+  </div>
+  <section><h2>What the estimates assume</h2><ul><li>You spend each available bar. Energy refills by 1 every 10 minutes, to a maximum of 72 in 12 hours. A full bar stops further recovery.</li><li>Food and drink can restore up to 24 additional energy per UTC day, shared across all items. This allowance resets at 00:00 UTC. The planner assumes you own and can afford the selected amount every day.</li><li>Actual gains roll independently from −3% to +3% per energy. A batch rolls each unit separately; splitting a batch offers no extra practice or XP.</li><li>Values are energy-budget estimates, not promises about calendar dates. You start with a full bar, so a milestone requiring three daily bars can be reached on your third visit. Gaps, activity rewards, future balance changes, or reaching a stat cap affect timing.</li><li>Level 100 and stat 100 are separate caps. Reaching 100 in one stat does not make the other three 100. This is the first balance model, intended to be tuned after playtesting.</li></ul></section>
+  <details><summary>Show the calculations and precision</summary><p class="formula"><code>Stat gain = 0.0125 / stat^0.75 × (1 + 0.25 × T / (T + 10,000)) × (1 + equipment bonus / 100) × luck</code></p><p>T is the total energy you have spent training. Practice approaches a +25% benefit; a higher stat takes more work to improve. Luck is a separate 0.97–1.03 roll for each energy. The next unit uses the new stat and T.</p><p class="formula"><code>XP for level L → L+1 = ceil(500 + 20 × (L−1) + 0.0008 × (L−1)^4)</code></p><p>Maximum health is 100 + 5 × (level−1). A level-up adds the health gained from the larger maximum; existing damage is preserved. Combat and damage activities are still future work.</p><p>Stat saves use integer billionths: 1.234567891 is stored as 1,234,567,891 units. Item bonuses use integer parts per million: +3.4572% is 34,572 ppm, exactly. The server rounds each applied stat gain to nine decimal places. The interface shows fewer digits for readability.</p></details>
+  <noscript><p>This calculator needs JavaScript. In the default model, level 5 takes about 3 daily bars, level 50 about 126, and level 90 to 100 about 887, at 72 energy per day.</p></noscript>
+</main>
+<script type="module">
+  import {levelThreshold, projectStats} from './progression-model.mjs';
+  const byId = id => document.getElementById(id);
+  const number = new Intl.NumberFormat('en-US', {maximumFractionDigits: 1});
+  const integer = new Intl.NumberFormat('en-US', {maximumFractionDigits: 0});
+  const duration = days => days >= 365.25 ? (days / 365.25).toFixed(2) + ' years' : number.format(days) + ' days';
+  function draw(id, points, stat = false) {
+    const svg = byId(id), width = Math.max(280, svg.clientWidth), height = 250;
+    const left = 38, right = width - 18, top = 18, bottom = 208;
+    const maxYears = points.at(-1).days / 365.25;
+    const x = days => left + (right-left) * days / (maxYears * 365.25);
+    const y = value => bottom - (bottom-top) * value / 100;
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    let content = `<title>${stat ? 'Stat' : 'Character level'} 100 takes approximately ${maxYears.toFixed(2)} years under these assumptions</title>`;
+    for (const value of [0,25,50,75,100]) content += `<line class="grid" x1="${left}" x2="${right}" y1="${y(value)}" y2="${y(value)}"/><text x="${left-8}" y="${y(value)+4}" text-anchor="end">${value}</text>`;
+    for (let i=0;i<=4;i++) content += `<text x="${left+(right-left)*i/4}" y="228" text-anchor="${i===0?'start':i===4?'end':'middle'}">${(maxYears*i/4).toFixed(1)}</text>`;
+    content += `<text x="${(left+right)/2}" y="247" text-anchor="middle">Years of daily play</text><path class="curve ${stat?'statcurve':''}" d="${points.map((p,i)=>`${i?'L':'M'}${x(p.days).toFixed(2)},${y(p.value).toFixed(2)}`).join(' ')}"/>`;
+    content += points.filter((_,i)=>i%Math.max(1,Math.floor(points.length/9))===0).map(p=>`<circle class="dot ${stat?'statdot':''}" cx="${x(p.days)}" cy="${y(p.value)}" r="3"><title>${stat?'Stat':'Level'} ${p.value}: ${duration(p.days)}</title></circle>`).join('');
+    svg.innerHTML=content;
+  }
+  let cachedKey = '', cachedStats = [];
+  function update() {
+    const form = byId('controls');
+    if (!form.checkValidity()) { byId('error').hidden=false; byId('error').textContent='Use 0–24 whole extra energy and a bonus from 0–10% in steps of 0.0001%.'; return; }
+    byId('error').hidden=true;
+    const daily=72*Number(byId('visits').value)+Number(byId('extra').value), gear=Number(byId('gear').value), allocation=Number(byId('allocation').value);
+    const key=`${gear}:${allocation}`;
+    if (key!==cachedKey) { cachedStats=projectStats(allocation,gear); cachedKey=key; }
+    const levels=[1,5,10,20,40,50,60,75,90,95,99,100];
+    byId('daily').textContent=integer.format(daily);
+    byId('early').textContent=duration(levelThreshold(5)/10/daily);
+    byId('late').textContent=duration((levelThreshold(100)-levelThreshold(90))/10/daily);
+    byId('stat100').textContent=duration(cachedStats.at(-1).totalEnergy/daily);
+    byId('levels').innerHTML=levels.map(level=>`<tr><td>${level}</td><td>${integer.format(levelThreshold(level))}</td><td>${duration(levelThreshold(level)/10/daily)}</td></tr>`).join('');
+    byId('stats').innerHTML=cachedStats.map(p=>`<tr><td>${p.stat}</td><td>${p.stat===100?'Capped':p.gain.toFixed(6)}</td><td>${duration(p.totalEnergy/daily)}</td></tr>`).join('');
+    draw('level-chart',Array.from({length:100},(_,i)=>({value:i+1,days:levelThreshold(i+1)/10/daily})));
+    draw('stat-chart',cachedStats.map(p=>({value:p.stat,days:p.totalEnergy/daily})),true);
+  }
+  byId('controls').addEventListener('submit',event=>event.preventDefault());
+  byId('controls').addEventListener('change',update);
+  window.addEventListener('resize',update);
+  update();
+</script></body></html>
