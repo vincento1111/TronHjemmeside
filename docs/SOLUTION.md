@@ -40,6 +40,8 @@ Training checks energy and increases the stat in the same transaction. Buying ch
 
 Energy regeneration uses a persisted timestamp. Returning later calculates elapsed recovery up to the cap. It does not depend on a background timer keeping the process alive, and restarting does not grant bonus energy.
 
+Progression v2 adds fractional stats, practice efficiency, individually rolled training equipment, character XP/levels/health, and a daily energy-consumable allowance. See [the formulas, pacing tables, precision rules, and save conversion](PROGRESSION.md). The game includes an interactive progression calculator linked from Training.
+
 ## Local operation and future work
 
 The local server uses a fresh SQLite database and serves the website from the same application. The launcher creates opt-in development demo data and keeps existing saves. Old Azure credentials and the remote database are not required.

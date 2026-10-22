@@ -1,4 +1,4 @@
-import { test, expect, json, type Inventory, type Stats } from './api-helpers';
+import { test, expect, json, type Inventory, type TrainingResult } from './api-helpers';
 
 test('fresh development demos store 1000 sodas as one stack and swords as separate instances', async ({ api }) => {
   for (const email of ['vince@tron.local', 'nova@tron.local']) {
@@ -52,7 +52,7 @@ test('stack purchases merge; consuming and selling change quantity and currency 
   expect(inventory.stacks.find((stack) => stack.definitionId === soda.id)!.quantity).toBe(7);
   expect((await player.me()).stats.money).toBe(before.stats.money - 7 * soda.price);
 
-  const trained = await json<Stats>(await player.mutate('POST', '/api/game/train', { stat: 'defense', amount: 12 }));
+  const trained = (await json<TrainingResult>(await player.mutate('POST', '/api/game/train', { stat: 'defense', amount: 12 }))).stats;
   await json(await player.mutate('POST', '/api/inventory/consume', { definitionId: soda.id, quantity: 1 }));
   expect((await player.me()).stats.energy).toBe(Math.min(trained.maxEnergy, trained.energy + soda.energyRestore));
   expect((await player.inventory()).stacks.find((stack) => stack.definitionId === soda.id)!.quantity).toBe(6);

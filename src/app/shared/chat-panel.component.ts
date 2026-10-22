@@ -10,15 +10,15 @@ import { OutgoingMessage } from '../core/models';
   selector: 'app-chat-panel',
   imports: [DatePipe, FormsModule, RouterLink],
   template: `
-    <section class="chat-panel" aria-label="Chat">
+    <section class="chat-panel" aria-label="Public and private chat">
       <header class="chat-title">
-        <div><span class="eyebrow">STAY CONNECTED</span><h2>City chat <span class="live-dot" [class.offline]="chat.status() !== 'online'"></span></h2></div>
+        <div><span class="eyebrow">{{ chat.recipient() ? 'JUST THE TWO OF YOU' : 'THE CITY CONVERSATION' }}</span><h2>{{ chat.recipient() ? 'Private chat' : 'Public chat' }} <span class="live-dot" [class.offline]="chat.status() !== 'online'"></span></h2></div>
         <button class="icon-button" aria-label="Close chat" (click)="chat.visible.set(false)">×</button>
       </header>
       <div class="chat-tabs">
-        <button [class.selected]="!chat.recipient()" (click)="switchToGlobal()">Global</button>
+        <button [class.selected]="!chat.recipient()" (click)="switchToGlobal()">Public chat</button>
         @if (chat.recipient(); as player) {
-          <button class="selected">↗ {{ player.displayName }}</button>
+          <button class="selected">Private · {{ player.displayName }}</button>
         } @else {
           <a routerLink="/players" class="chat-find">Find people ↗</a>
         }
@@ -26,7 +26,7 @@ import { OutgoingMessage } from '../core/models';
       @if (chat.recipient(); as player) {
         <div class="conversation-label">Private conversation with <a [routerLink]="['/players', player.id]">{{ player.displayName }}</a></div>
       } @else {
-        <div class="conversation-label">A shared corner of the city. Say hello.</div>
+        <div class="conversation-label">Everyone in Tron City can read and join this conversation. Say hello.</div>
       }
       @if (chat.status() !== 'online') {
         <div class="connection-banner" role="status">{{ chat.status() === 'offline' ? 'Connection lost. Retrying…' : 'Connecting to the city…' }}</div>
@@ -34,7 +34,7 @@ import { OutgoingMessage } from '../core/models';
       <div class="chat-messages" #messageList aria-live="polite" aria-relevant="additions">
         @if (chat.loading() && !chat.messages().length) { <p class="muted chat-empty">Loading messages…</p> }
         @if (!chat.loading() && !chat.messages().length && !chat.historyError()) {
-          <div class="chat-empty"><span class="empty-symbol">⌁</span><strong>Start a conversation</strong><p>Your next connection starts with hello.</p></div>
+          <div class="chat-empty"><span class="empty-symbol">⌁</span><strong>{{ chat.recipient() ? 'Start a private conversation' : 'Say hello to the city' }}</strong><p>{{ chat.recipient() ? 'Only you and this player can see these messages.' : 'Write below to send a public message to all players.' }}</p></div>
         }
         @for (message of chat.messages(); track message.id) {
           <article class="message" [class.mine]="message.senderId === session.user()?.id" [attr.data-message-id]="message.id">

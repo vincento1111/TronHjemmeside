@@ -21,6 +21,22 @@ export interface Stats {
   level: number;
   health: number;
   maxHealth: number;
+  experience: number;
+  xpIntoLevel: number;
+  xpToNextLevel: number;
+  totalTrainingEnergy: number;
+  trainingMasteryPercent: number;
+  trainingBonusPercent: number;
+  energyBoostRemaining: number;
+  energyBoostResetAt: string;
+}
+export interface TrainingResult {
+  stats: Stats;
+  stat: 'strength' | 'defense' | 'speed' | 'dexterity';
+  energySpent: number;
+  statGain: number;
+  xpGained: number;
+  levelsGained: number;
 }
 export interface Me {
   id: number;
@@ -33,14 +49,18 @@ export interface Me {
 export interface Definition {
   id: number;
   name: string;
-  kind: 'weapon' | 'consumable';
+  kind: 'weapon' | 'training' | 'consumable';
   tracking: 'instance' | 'stack';
   price: number;
   basePower: number;
   energyRestore: number;
+  equipmentSlot: 'weapon' | 'training' | null;
+  trainingBonusPercent: number;
+  trainingBonusMinPercent: number;
+  trainingBonusMaxPercent: number;
 }
 export interface Inventory {
-  instances: Array<{ id: number; definitionId: number; name: string; definitionName: string; power: number; equipped: boolean }>;
+  instances: Array<{ id: number; definitionId: number; name: string; definitionName: string; power: number; equipped: boolean; equipmentSlot: 'weapon' | 'training'; trainingBonusPercent: number }>;
   stacks: Array<{ definitionId: number; name: string; quantity: number; energyRestore: number }>;
 }
 export interface Message {

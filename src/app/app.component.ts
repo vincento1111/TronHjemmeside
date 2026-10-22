@@ -22,6 +22,7 @@ import { ChatPanelComponent } from './shared/chat-panel.component';
             <a routerLink="/inventory" routerLinkActive="active"><span class="nav-icon">▣</span><span>Inventory</span></a>
             <a routerLink="/shop" routerLinkActive="active"><span class="nav-icon">◇</span><span>Market</span></a>
             <a routerLink="/players" routerLinkActive="active"><span class="nav-icon">◎</span><span>People</span></a>
+            <button type="button" class="public-chat-nav" [class.active]="chat.visible() && !chat.recipient()" (click)="chat.open(null)" [attr.aria-expanded]="chat.visible() && !chat.recipient()" aria-controls="city-chat-panel"><span class="nav-icon">⌁</span><span>Public chat</span></button>
           </nav>
           <div class="sidebar-bottom">
             <div class="local-badge"><span class="live-dot"></span> LOCAL EDITION</div>
@@ -38,13 +39,13 @@ import { ChatPanelComponent } from './shared/chat-panel.component';
             <div class="topbar-resources">
               <span title="Energy"><span class="teal">ϟ</span> {{ me.stats.energy }}<span class="muted">/{{ me.stats.maxEnergy }}</span></span>
               <span title="Money"><span class="gold">$</span> {{ me.stats.money | number:'1.0-0' }}</span>
-              <button class="button button-small button-outline" (click)="chat.visible.set(!chat.visible())" [attr.aria-expanded]="chat.visible()">Chat <span>⌁</span></button>
+              <button class="button button-small button-outline" (click)="chat.open(null)" [attr.aria-expanded]="chat.visible() && !chat.recipient()" aria-label="Open public chat" aria-controls="city-chat-panel">Public chat <span>⌁</span></button>
             </div>
           </header>
           <main id="main-content"><router-outlet /></main>
           <footer class="main-footer"><span>TRON CITY</span><span>Build your name. One move at a time.</span></footer>
         </div>
-        <aside class="chat-column" [attr.inert]="chat.visible() ? null : ''"><app-chat-panel /></aside>
+        <aside id="city-chat-panel" class="chat-column" [attr.inert]="chat.visible() ? null : ''"><app-chat-panel /></aside>
       </div>
     } @else {
       <router-outlet />

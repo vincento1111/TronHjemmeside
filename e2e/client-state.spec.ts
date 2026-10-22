@@ -5,7 +5,7 @@ import { ApiService } from '../src/app/core/api.service';
 import { SessionService } from '../src/app/core/session.service';
 import { NoticeService } from '../src/app/core/notice.service';
 import { TrainingComponent } from '../src/app/pages/training.component';
-import type { Me, Stats } from '../src/app/core/models';
+import type { Me, Stats, TrainingResult } from '../src/app/core/models';
 
 function deferred<T>(): { promise: Promise<T>; resolve: (value: T) => void } {
   let resolve!: (value: T) => void;
@@ -14,9 +14,12 @@ function deferred<T>(): { promise: Promise<T>; resolve: (value: T) => void } {
 }
 
 const stats: Stats = {
-  strength: 10, defense: 10, speed: 10, dexterity: 10,
+  strength: 1, defense: 1, speed: 1, dexterity: 1,
   energy: 72, maxEnergy: 72, nextEnergyAt: null,
   money: 1000, level: 1, health: 100, maxHealth: 100,
+  experience: 0, xpIntoLevel: 0, xpToNextLevel: 500,
+  totalTrainingEnergy: 0, trainingMasteryPercent: 0, trainingBonusPercent: 0,
+  energyBoostRemaining: 24, energyBoostResetAt: '2026-10-23T00:00:00Z',
 };
 const player = (id: number): Me => ({
   id, displayName: `Player${id}`, email: `player${id}@tron.local`,
@@ -24,7 +27,7 @@ const player = (id: number): Me => ({
 });
 
 test('a late training response cannot replace the next signed-in account stats', async () => {
-  const trainingReply = deferred<Stats>();
+  const trainingReply = deferred<TrainingResult>();
   let nextPlayer = player(1);
   const api = {
     refreshCsrf: async () => undefined,
@@ -43,7 +46,8 @@ test('a late training response cannot replace the next signed-in account stats',
     // Another tab changes the shared browser account before the first response arrives.
     nextPlayer = player(2);
     await session.signIn('player2@tron.local', 'test');
-    trainingReply.resolve({ ...stats, strength: 91, energy: 1, money: 777 });
+    trainingReply.resolve({ stats: { ...stats, strength: 1.0125, energy: 71, money: 777 },
+      stat: 'strength', energySpent: 1, statGain: 0.0125, xpGained: 10, levelsGained: 0 });
     await pending;
     expect(session.user()!.id).toBe(2);
     expect(session.user()!.stats).toEqual(player(2).stats);

@@ -4,6 +4,12 @@ export interface Stats {
   strength: number; defense: number; speed: number; dexterity: number;
   energy: number; maxEnergy: number; nextEnergyAt: string | null;
   money: number; level: number; health: number; maxHealth: number;
+  experience: number; xpIntoLevel: number; xpToNextLevel: number;
+  totalTrainingEnergy: number; trainingMasteryPercent: number; trainingBonusPercent: number;
+  energyBoostRemaining: number; energyBoostResetAt: string;
+}
+export interface TrainingResult {
+  stats: Stats; stat: StatName; energySpent: number; statGain: number; xpGained: number; levelsGained: number;
 }
 export interface Me {
   id: number; displayName: string; email: string; description: string;
@@ -13,11 +19,14 @@ export interface Player {
   id: number; displayName: string; description: string; createdAt: string; level: number;
 }
 export interface Definition {
-  id: number; name: string; description: string; kind: 'weapon' | 'consumable';
+  id: number; name: string; description: string; kind: 'weapon' | 'training' | 'consumable';
   tracking: 'instance' | 'stack'; price: number; basePower: number; energyRestore: number;
+  equipmentSlot: 'weapon' | 'training' | null;
+  trainingBonusPercent: number; trainingBonusMinPercent: number; trainingBonusMaxPercent: number;
 }
 export interface ItemInstance {
   id: number; definitionId: number; name: string; definitionName: string; power: number; equipped: boolean;
+  equipmentSlot: 'weapon' | 'training' | null; trainingBonusPercent: number;
 }
 export interface ItemStack { definitionId: number; name: string; quantity: number; energyRestore: number; }
 export interface Inventory { instances: ItemInstance[]; stacks: ItemStack[]; }

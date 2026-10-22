@@ -28,6 +28,8 @@ Use a normal browser window and a separate private window for two accounts. Tabs
 3. Train a stat, drink soda to restore energy, and train again.
 4. Open Inventory: each demo character starts with 1,000 sodas in one stack and two separately tracked swords. Rename/equip a sword, buy more items, or sell them.
 
+**Progression update:** Public chat has its own navigation button. Stats start at 1 and grow fractionally, training awards XP, and character levels increase maximum health. The market also sells rolled training gear, Coffee, and Trail Mix. You can equip one weapon and one training item together. Energy refills in 12 hours; consumables share a 24-energy daily allowance. Read [the progression model](docs/PROGRESSION.md), or open `/assets/progression-calculator.html` on the local game to compare play schedules and bonuses. Existing local saves are backed up and upgraded automatically; old training effort is converted to the new scale.
+
 Progress persists in `TronApiV2/TronApi/App_Data/tron-city.db`. Starting and stopping does not reset it. **Stop-Tron.cmd** stops only the server recorded by this launcher's process file. Logs are in this repository's ignored `.local` folder.
 
 ```powershell
